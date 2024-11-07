@@ -1,3 +1,6 @@
 myenv/
 .venv/
-
+.idea
+__pycache__
+access_data
+not_available
