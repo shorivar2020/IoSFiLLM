@@ -20,11 +20,12 @@ def check_question():
     question = data.get('question', '').lower()
     search_engine = data.get('searchEngine', 1)
     ai_engine = data.get('aiEngine', 1)
+    db = data.get('db', 1)
     print("Received question:", question)
     print("Search engine selected:", search_engine)
     print("AI engine selected:", ai_engine)
-    answer, source, ai_answer = controller(question, search_engine, ai_engine)
-    return jsonify({"answer": answer, "source": source, "ai_answer": ai_answer})
+    answer, source, ai_answer, doc_links = controller(question, search_engine, db, ai_engine)
+    return jsonify({"answer": answer, "source": source, "ai_answer": ai_answer, "doc_links": doc_links})
 
 
 if __name__ == '__main__':

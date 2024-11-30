@@ -1,74 +1,92 @@
 <template>
-  <!-- First slide container for the first set of search engines -->
-  <div class="grid-container">
-    <div class="grid-item item1">
-      <div class="slide_container">
-        <div class="slide_name">
-          <!-- Update the span to reflect the selected engine by adding 'active' class -->
-          <span :class="{ active: selected === 1 }">Google</span>
-          <span :class="{ active: selected === 2 }">Google Schoolar</span>
-          <span :class="{ active: selected === 3 }">DuckDuckGo</span>
-          <span :class="{ active: selected === 4 }">Bing</span>
-          <span :class="{ active: selected === 5 }">Brave</span>
-          <span :class="{ active: selected === 6 }">Google api</span>
-        </div>
-        <!-- Range slider bound to 'selected' -->
-        <input type="range" min="1" max="6" v-model="selected" class="slider" id="myRange">
+  <div class="main">
+    <!-- First slide container for the first set of search engines -->
+    <div class="slide_container">
+      <div class="slide_name">
+        <!-- Update the span to reflect the selected engine by adding 'active' class -->
+        <span :class="{ active: selected === 1 }">Google</span>
+        <span :class="{ active: selected === 3 }">DuckDuckGo</span>
+        <span :class="{ active: selected === 4 }">Bing</span>
+        <span :class="{ active: selected === 5 }">Brave</span>
       </div>
-
-      <!-- Second slide container for the second set of search engines -->
-      <div class="slide_container">
-        <div class="slide_name">
-          <!-- Update the span to reflect the selected engine by adding 'active2' class -->
-          <span :class="{ active2: selected2 === 1 }">Gemini</span>
-          <span :class="{ active2: selected2 === 2 }">ChatGPT</span>
-          <span :class="{ active2: selected2 === 3 }">Bing</span>
-        </div>
-        <!-- Range slider bound to 'selected2' -->
-        <input type="range" min="1" max="3" v-model="selected2" class="slider" id="myRange2">
-      </div>
+      <!-- Range slider bound to 'selected' -->
+      <input type="range" min="1" max="4" v-model="selected" class="slider" id="myRange">
     </div>
-    <!-- Answer container for displaying the backend response -->
-    <div class="grid-item item2">
-      <div class="answer_container">
-        <div>
-          <ul v-if="source.length > 0" class="source-list">
-            <li><p>Sources:</p></li>
+    <div class="slide_container">
+      <div class="slide_name">
+        <!-- Update the span to reflect the selected engine by adding 'active' class -->
+        <span :class="{ active: selected === 1 }">Google Scholar</span>
+        <span :class="{ active: selected === 2 }">Pub Med</span>
+      </div>
+      <!-- Range slider bound to 'selected' -->
+      <input type="range" min="1" max="2" v-model="selected2" class="slider" id="myRange2">
+    </div>
+    <!-- Second slide container for the second set of search engines -->
+    <div class="slide_container">
+      <div class="slide_name">
+        <!-- Update the span to reflect the selected engine by adding 'active2' class -->
+        <span :class="{ active2: selected2 === 1 }">Gemini</span>
+        <span :class="{ active2: selected2 === 2 }">Pegasus+Gemini</span>
+        <span :class="{ active2: selected2 === 3 }">T5</span>
+        <span :class="{ active2: selected2 === 4 }">BART+Gemini</span>
+      </div>
+      <!-- Range slider bound to 'selected2' -->
+      <input type="range" min="1" max="4" v-model="selected3" class="slider" id="myRange3">
+    </div>
+    <div class="answer_container">
+      <div class="columns">
+        <div class = "column left">
+          <div v-if="answer">
+            <h5>Answer</h5>
+            <div v-html="answer" class="answer"></div>
+          </div>
+
+        </div>
+        <div v-if="source.length > 0" class = "column right">
+          <h5>Sources</h5>
+          <ul class="source-list">
             <li v-for="(url, index) in source" :key="index">
               <a :href="url" target="_blank" rel="noopener noreferrer">{{ getDomain(url) }}</a>
             </li>
           </ul>
-          <p v-else>Wait source...</p>
+        </div>
+        <div class = "column left">
+          <div v-if="ai_answer" class = "ai_answer">
+            <h5>AI</h5>
+            <div v-html="ai_answer" class="ai-answer"></div>
+          </div>
+          <p v-else>Wait answer...</p>
+        </div>
+        <div v-if="doc_links.length > 0" class = "column right">
+          <h5>Studies links</h5>
+          <ul class="source-list">
+            <li v-for="(url, index) in doc_links" :key="index">
+              <a :href="url" target="_blank" rel="noopener noreferrer">{{ getDomain(url) }}</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-    <div class="grid-item item3">
-      <div class="answer_container">
-        <p v-if="answer">Answer: {{ answer }}</p>
         <!-- Placeholder text before getting a real answer -->
-        <p v-else>Wait answer...</p>
-      </div>
+
     </div>
-    <div class="grid-item item4">
-      <div class="answer_container">
-          <p v-if="ai_answer">AI: {{ ai_answer }}</p>
-          <!-- Placeholder text before getting a real answer -->
-          <p v-else>Wait answer...</p>
-      </div>
+    <!-- Textarea for user input and a send button -->
+    <div class="chat-input-container">
+      <div class="chat-input-wrapper">
+        <textarea name="message" class="chat-input" v-model="question" placeholder="Enter your question"></textarea>
+        <button class="send-button" @click="sendQuestion">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2.01 21l20.99-9L2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+        </div>
     </div>
-    <div class="grid-item item5">
-      <!-- Textarea for user input and a send button -->
-      <div class="textarea_container">
-        <textarea name="message" rows="10" cols="30" v-model="question" placeholder="Enter your question"></textarea>
-        <button @click="sendQuestion">Send</button>
-      </div>
-    </div>
+    <footer> </footer>
   </div>
 </template>
 
 <script>
 import axios from 'axios' // Importing axios for HTTP requests
-
+import { marked } from 'marked'
 export default {
   data() {
     return {
@@ -76,11 +94,14 @@ export default {
       answer: '',     // Holds the backend response
       source: '',
       ai_answer: '',
+      doc_links: '',
       selected: 1,    // Value of the first search engine slider
-      selected2: 1    // Value of the second search engine slider
+      selected2: 1,   // Value of the second search engine slider
+      selected3: 1,
     }
   },
   methods: {
+
     getDomain(url) {
       try {
         return new URL(url).hostname.replace('www.', '');
@@ -93,13 +114,16 @@ export default {
       axios.post('http://20.123.47.146:8080/api/check', {
         question: this.question,
         searchEngine: this.selected,
-        aiEngine: this.selected2
+        db: this.selected2,
+        aiEngine: this.selected3
+
       })
       .then(response => {
         console.log('Response from server:', response.data);
-        this.answer = response.data.answer;
+        this.answer = marked.parse(response.data.answer);
         this.source = response.data.source;
-        this.ai_answer = response.data.ai_answer;
+        this.ai_answer = marked.parse(response.data.ai_answer);
+        this.doc_links = response.data.doc_links;
       })
       .catch(error => {
         console.error('Error:', error);
@@ -111,37 +135,13 @@ export default {
 </script>
 
 <style scoped>
-.grid-container {
-  display: grid;
-}
 
-.grid-item {
-  text-align: center;
-}
-
-.item1 {
-  grid-column: 1 / span 3;
-  grid-row: 1;
-}
-
-.item2 {
-  grid-column: 3;
-  grid-row: 2;
-}
-
-.item3 {
-  grid-column: 1 / span 2;
-  grid-row: 2;
-}
-
-.item4 {
-  grid-column: 1 / span 3;
-  grid-row: 3;
-}
-
-.item5 {
-  grid-column: 1 / span 3;
-  grid-row: 4;
+.main{
+  font-family: DM Sans,sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Style for the slider container */
@@ -211,53 +211,34 @@ export default {
   border-radius: 10px;
 }
 
-/* Style for the textarea container */
-.textarea_container {
-  text-align: center;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
-
-/* Style for the textarea */
-.textarea_container textarea {
-  background: #d3d3d3;
-  outline: none;
-  height: 70px;
-  width: 80%;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  resize: none;
-}
-
-/* Style for the send button */
-.textarea_container button {
-  height: 25px;
-  width: 20%;
-  background: #074a7d;
-  cursor: pointer;
-  border-radius: 10px;
-  color: white;
-  margin: 15px;
-}
-
 /* Style for the answer container */
 .answer_container {
-  text-align: center;
-  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.columns{
+  display: flex;
+}
+.column.left{
+  width: 75%;
+  margin-right: 10px;
+}
+.column.right{
+  width: 25%;
   align-items: center;
-  font-family: Arial, sans-serif;
+}
+
+.answer_container h5 {
+  margin: 0;
+  font-size: 25px;
 }
 
 /* Style for the answer text */
 .answer_container p {
-  width: 80%;
   font-size: 16px;
 }
 
@@ -271,11 +252,67 @@ export default {
 }
 
 .source-list a {
-  color: #1e90ff;
+  color: #074a7d;
   text-decoration: none;
 }
 
 .source-list a:hover {
   text-decoration: underline;
+}
+.chat-input-container {
+  position: fixed;       /* Fixes the container to the viewport */
+  bottom: 10px;             /* Positions it at the bottom of the viewport */
+  display: flex;
+  width: 80%;
+}
+.chat-input-wrapper {
+  display: flex;
+  //align-items: center;
+  float: right;
+  width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Поле ввода */
+.chat-input {
+  flex: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 16px;
+  resize: none; /* Отключить изменение размеров вручную */
+  outline: none;
+  overflow-y: auto;
+  max-height: 150px; /* Максимальная высота */
+}
+
+/* Кнопка отправки */
+.send-button {
+  background-color: #074a7d;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Значок на кнопке отправки */
+.send-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+footer{
+  height: 100px;
+  width: 100%;
 }
 </style>

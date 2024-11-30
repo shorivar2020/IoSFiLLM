@@ -8,7 +8,10 @@ import nltk
 import logging
 
 
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 nltk.download('stopwords')
+nltk.download('punkt_tab')
 stop_words = set(stopwords.words("english"))
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 lemmatizer = WordNetLemmatizer()
@@ -57,6 +60,3 @@ def prepare_query(text):
     return ' '.join(keywords)
 
 
-user_input = "What is negative emotions?"
-final_query = prepare_query(user_input)
-print("Final Search Query:", final_query)
