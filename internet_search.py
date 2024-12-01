@@ -1,3 +1,5 @@
+import re
+
 from scholarly import scholarly
 from googlesearch import search
 from duckduckgo_search import DDGS
@@ -9,6 +11,8 @@ from Bio import Entrez
 import requests
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+from metapub import PubMedFetcher
+import pandas as pd
 
 
 subscription_key = os.environ['BING_SEARCH_V7_SUBSCRIPTION_KEY']
@@ -93,62 +97,68 @@ def search_scholar_links(question, num_results):
     articles = []
     links = []
     count = 0
-
+    all_text = ""
     for result in search_query:
         # Extract details from the result
         title = result['bib'].get('title', 'No title available')
         abstract = result['bib'].get('abstract', 'No abstract available')
         keywords = result['bib'].get('keywords', 'No keywords available')
+        if 'pub_year' in result:
+            year = result.get('pub_year', 'No year available')
+        elif 'date' in result:
+            year = result.get('date', 'No year available')
+        else:
+            possible_year = re.search(r'\b(19|20)\d{2}\b', title + " " + abstract)
+            year = possible_year.group(0) if possible_year else ''
+        author = result['bib'].get('author', '')
         pub_url = result.get('pub_url', None)
         links.append(pub_url)
         # Prepare the data to append
         article = {
             'title': title,
             'abstract': abstract,
+            "year": year,
+            "author": author,
             'keywords': keywords,
             'link': pub_url if pub_url else 'No link available'
         }
         articles.append(article)
-
+        all_text += abstract
         # Stop after the desired number of results
         count += 1
         if count >= num_results:
             break
 
-    return articles, links
+    return articles, links, all_text
 
 
 def search_pub_med(query, num):
-    Entrez.email = "shorivar@fel.cvut.cz"  # Set the email parameter
-    # Search PubMed
-    handle = Entrez.esearch(db="pubmed", term=query, retmax=num)
-    record = Entrez.read(handle)
-    handle.close()
-
-    # Get PubMed IDs (PMIDs)
-    id_list = record["IdList"]
-    # Fetch links
-    links = []
+    fetch = PubMedFetcher()
+    pmids = fetch.pmids_for_query(query, retmax=num)
     articles = []
-    for pubmed_id in id_list:
-        handle = Entrez.esummary(db="pubmed", id=pubmed_id)
-        summary = Entrez.read(handle)
-        handle.close()
-        links.append(f"https://pubmed.ncbi.nlm.nih.gov/{pubmed_id}/")
-        title = summary[0].get("Title", "No title available")
-        link = f"https://pubmed.ncbi.nlm.nih.gov/{pubmed_id}/"
-        abstract = summary[0].get("Source", "No abstract available")
-        keywords = summary[0].get("Keywords", "No keywords available")
-        print(title)
-        print(abstract)
-        links.append(link)
+    links = []
+    all_text = ""
+    for pmid in pmids:
+        article = fetch.article_by_pmid(pmid)
+        title = fetch.article_by_pmid(pmid).title
+        abstract = fetch.article_by_pmid(pmid).abstract
+        author = fetch.article_by_pmid(pmid).authors
+        year = fetch.article_by_pmid(pmid).year
+        volume = fetch.article_by_pmid(pmid).volume
+        issue = fetch.article_by_pmid(pmid).issue
+        journal = fetch.article_by_pmid(pmid).journal
+        citation = fetch.article_by_pmid(pmid).citation
+        link = "https://pubmed.ncbi.nlm.nih.gov/" + pmid + "/"
         articles.append({
             "title": title,
             "link": link,
             "abstract": abstract,
-            "keywords": keywords
+            "year": year,
+            "author": author
         })
-    return articles, links
+        links.append(link)
+        all_text += abstract
+    return articles, links, all_text
 
 
 def scrape_with_headers(url):
@@ -226,10 +236,18 @@ def fetch_html_data(url):
 
 def links_parsing(links, ai_engine):
     all_text = ''
+    articles = []
     for link in links:
         new_text = parsing_web_page(link, all_text, ai_engine)
+        articles.append({
+            "title": link,
+            "link": link,
+            "abstract": new_text,
+            "year": '',
+            "author": ''
+        })
         all_text += new_text
-    return all_text
+    return all_text, articles
 
 
 if __name__ == '__main__':
@@ -246,5 +264,7 @@ if __name__ == '__main__':
     # for res in search_scholar_links("What is negative emotions?", 5):
     #     print(res['link'])
     # print("Pub med")
-    for res in search_pub_med("What is negative emotions?", 5):
-        print(res)
+    # for res in search_pub_med("What is negative emotions?", 5):
+    #     print(res)
+    # print(search_pub_med("Indicate ibuprofen", 5))
+    # print(search_scholar_links("Indicate ibuprofen", 5))

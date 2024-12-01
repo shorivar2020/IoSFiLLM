@@ -1,73 +1,30 @@
 <template>
   <div class="main">
-    <!-- First slide container for the first set of search engines -->
+    <!-- First slide container for the set of search engines -->
     <div class="slide_container">
       <div class="slide_name">
         <!-- Update the span to reflect the selected engine by adding 'active' class -->
-        <span :class="{ active: selected === 1 }">Google</span>
-        <span :class="{ active: selected === 3 }">DuckDuckGo</span>
-        <span :class="{ active: selected === 4 }">Bing</span>
-        <span :class="{ active: selected === 5 }">Brave</span>
+        <span :class="{ active: selected === '1' }">Google</span>
+        <span :class="{ active: selected === '2' }">DuckDuckGo</span>
+        <span :class="{ active: selected === '3' }">Bing</span>
+        <span :class="{ active: selected === '4' }">Brave</span>
+        <span :class="{ active: selected === '5' }">Google Scholar</span>
+        <span :class="{ active: selected === '6' }">Pub Med</span>
       </div>
       <!-- Range slider bound to 'selected' -->
-      <input type="range" min="1" max="4" v-model="selected" class="slider" id="myRange">
-    </div>
-    <div class="slide_container">
-      <div class="slide_name">
-        <!-- Update the span to reflect the selected engine by adding 'active' class -->
-        <span :class="{ active: selected === 1 }">Google Scholar</span>
-        <span :class="{ active: selected === 2 }">Pub Med</span>
-      </div>
-      <!-- Range slider bound to 'selected' -->
-      <input type="range" min="1" max="2" v-model="selected2" class="slider" id="myRange2">
+      <input type="range" min="1" max="6" v-model="selected" class="slider" id="myRange">
     </div>
     <!-- Second slide container for the second set of search engines -->
     <div class="slide_container">
       <div class="slide_name">
         <!-- Update the span to reflect the selected engine by adding 'active2' class -->
-        <span :class="{ active2: selected2 === 1 }">Gemini</span>
-        <span :class="{ active2: selected2 === 2 }">Pegasus+Gemini</span>
-        <span :class="{ active2: selected2 === 3 }">T5</span>
-        <span :class="{ active2: selected2 === 4 }">BART+Gemini</span>
+        <span :class="{ active2: selected2 === '1' }">Gemini</span>
+        <span :class="{ active2: selected2 === '2' }">Pegasus+Gemini</span>
+        <span :class="{ active2: selected2 === '3' }">T5</span>
+        <span :class="{ active2: selected2 === '4' }">BART+Gemini</span>
       </div>
       <!-- Range slider bound to 'selected2' -->
-      <input type="range" min="1" max="4" v-model="selected3" class="slider" id="myRange3">
-    </div>
-    <div class="answer_container">
-      <div class="columns">
-        <div class = "column left">
-          <div v-if="answer">
-            <h5>Answer</h5>
-            <div v-html="answer" class="answer"></div>
-          </div>
-
-        </div>
-        <div v-if="source.length > 0" class = "column right">
-          <h5>Sources</h5>
-          <ul class="source-list">
-            <li v-for="(url, index) in source" :key="index">
-              <a :href="url" target="_blank" rel="noopener noreferrer">{{ getDomain(url) }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class = "column left">
-          <div v-if="ai_answer" class = "ai_answer">
-            <h5>AI</h5>
-            <div v-html="ai_answer" class="ai-answer"></div>
-          </div>
-          <p v-else>Wait answer...</p>
-        </div>
-        <div v-if="doc_links.length > 0" class = "column right">
-          <h5>Studies links</h5>
-          <ul class="source-list">
-            <li v-for="(url, index) in doc_links" :key="index">
-              <a :href="url" target="_blank" rel="noopener noreferrer">{{ getDomain(url) }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-        <!-- Placeholder text before getting a real answer -->
-
+      <input type="range" min="1" max="4" v-model="selected2" class="slider" id="myRange2">
     </div>
     <!-- Textarea for user input and a send button -->
     <div class="chat-input-container">
@@ -80,8 +37,41 @@
         </button>
         </div>
     </div>
+    <div class="answer_container">
+      <div class="answer-input-wrapper">
+        <h5>Answer</h5>
+        <div v-if="answer">
+            <div v-html="answer" class="answer"></div>
+        </div>
+        <p v-else>Wait answer...</p>
+        <h5>AI</h5>
+        <div v-if="ai_answer" class = "ai_answer">-->
+          <div v-html="ai_answer" class="ai-answer"></div>
+        </div>
+        <p v-else>Wait AI answer...</p>
+      </div>
+    </div>
+    <div class="source_container">
+      <table>
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Abstract</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(article, index) in articles" :key="index">
+            <td>
+              <a :href="article.url" target="_blank" rel="noopener noreferrer">{{ article.source }} {{ article.year }}</a>
+            </td>
+            <td><p>{{ article.abstract }}</p><p>Authors:{{ article.authors}}</p></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <footer> </footer>
   </div>
+
 </template>
 
 <script>
@@ -94,10 +84,9 @@ export default {
       answer: '',     // Holds the backend response
       source: '',
       ai_answer: '',
-      doc_links: '',
-      selected: 1,    // Value of the first search engine slider
-      selected2: 1,   // Value of the second search engine slider
-      selected3: 1,
+      articles: '',
+      selected: "1",    // Value of the first search engine slider
+      selected2: "1",
     }
   },
   methods: {
@@ -114,8 +103,7 @@ export default {
       axios.post('http://20.123.47.146:8080/api/check', {
         question: this.question,
         searchEngine: this.selected,
-        db: this.selected2,
-        aiEngine: this.selected3
+        aiEngine: this.selected2
 
       })
       .then(response => {
@@ -123,7 +111,13 @@ export default {
         this.answer = marked.parse(response.data.answer);
         this.source = response.data.source;
         this.ai_answer = marked.parse(response.data.ai_answer);
-        this.doc_links = response.data.doc_links;
+        this.articles = response.data.articles.map(article => ({
+        source: article.title || 'No source available',
+        url: article.link || 'No link available',
+        authors: article.author || '',
+        year: article.year || '',
+        abstract: article.abstract || '',
+      }));
       })
       .catch(error => {
         console.error('Error:', error);
@@ -148,6 +142,10 @@ export default {
 .slide_container {
   width: 100%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Style for the slider labels (search engine names) */
@@ -155,11 +153,12 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-top: 15px;
+  width: 80%;
 }
 
 /* Style for each individual label */
 .slide_name span {
-  width: 20%;
+  width: 16%;
   text-align: center;
 }
 
@@ -195,18 +194,18 @@ export default {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15%;
+  width: 16%;
   height: 25px;
-  background: #074a7d;
+  background: #000000;
   cursor: pointer;
   border-radius: 10px;
 }
 
 /* Style for the Firefox slider thumb */
 .slider::-moz-range-thumb {
-  width: 15%;
+  width: 16%;
   height: 25px;
-  background: #074a7d;
+  background: #000000;
   cursor: pointer;
   border-radius: 10px;
 }
@@ -214,22 +213,18 @@ export default {
 /* Style for the answer container */
 .answer_container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  width: 80%;
   margin-top: 15px;
   margin-bottom: 15px;
-}
 
-.columns{
-  display: flex;
 }
-.column.left{
-  width: 75%;
-  margin-right: 10px;
-}
-.column.right{
-  width: 25%;
-  align-items: center;
+.answer-input-wrapper {
+  //display: flex;
+  //align-items: center;
+  width: 800px;
+  padding: 10px;
+  background-color: white;
 }
 
 .answer_container h5 {
@@ -242,17 +237,12 @@ export default {
   font-size: 16px;
 }
 
-.source-list {
-  list-style-type: none;
-  padding: 0;
-}
-
 .source-list li {
   margin-bottom: 5px;
 }
 
 .source-list a {
-  color: #074a7d;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -260,39 +250,39 @@ export default {
   text-decoration: underline;
 }
 .chat-input-container {
-  position: fixed;       /* Fixes the container to the viewport */
-  bottom: 10px;             /* Positions it at the bottom of the viewport */
+  padding: 10px;
+  margin: 10px;
+  justify-content: center;
+  //position: fixed;       /* Fixes the container to the viewport */
+  //bottom: 10px;             /* Positions it at the bottom of the viewport */
   display: flex;
   width: 80%;
 }
 .chat-input-wrapper {
   display: flex;
   //align-items: center;
-  float: right;
   width: 800px;
   border: 1px solid #ddd;
-  border-radius: 25px;
+  border-radius: 15px;
   padding: 10px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Поле ввода */
 .chat-input {
   flex: 1;
   border: none;
   border-radius: 20px;
   padding: 10px;
   font-size: 16px;
-  resize: none; /* Отключить изменение размеров вручную */
+  resize: none;
   outline: none;
   overflow-y: auto;
-  max-height: 150px; /* Максимальная высота */
+  max-height: 150px;
 }
 
-/* Кнопка отправки */
 .send-button {
-  background-color: #074a7d;
+  background-color: #000000;
   border: none;
   color: white;
   padding: 8px 16px;
@@ -305,14 +295,74 @@ export default {
   justify-content: center;
 }
 
-/* Значок на кнопке отправки */
 .send-button svg {
   width: 18px;
   height: 18px;
 }
 
+.source_container{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.source_container table{
+  width: 80%;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  //padding-top: 10px;
+  //padding-bottom: 10px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  table-layout: fixed;
+}
+
+.source_container a{
+  text-decoration: none;
+  color: #000000;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+a:hover {
+  opacity: 1;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+}
+
+tbody{
+  max-height: 400px;
+  display: block;
+  overflow-y: auto;
+  //display: flex;
+  //flex-direction: column;
+}
+
+tr:nth-child(even) {
+  background-color: #cdc7c7;
+}
+
+.source_container td{
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+tr{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-bottom: 1px solid #ddd;
+  border-radius: 15px;
+}
+
 footer{
-  height: 100px;
+  height: 50px;
   width: 100%;
 }
 </style>

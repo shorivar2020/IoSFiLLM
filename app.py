@@ -24,10 +24,12 @@ def check_question():
     print("Received question:", question)
     print("Search engine selected:", search_engine)
     print("AI engine selected:", ai_engine)
-    answer, source, ai_answer, doc_links = controller(question, search_engine, db, ai_engine)
-    return jsonify({"answer": answer, "source": source, "ai_answer": ai_answer, "doc_links": doc_links})
+    answer, source, articles, ai_answer = controller(question, search_engine, ai_engine)
+    return jsonify({"answer": answer, "source": source, "ai_answer": ai_answer, "articles": articles})
 
 
 if __name__ == '__main__':
     print("Start app")
     app.run(host='0.0.0.0', port=8080, debug=False)
+
+# Article structure {'title': 'Renal injury in NSAIDs: a real-world analysis based on the FAERS database.', 'link': 'https://pubmed.ncbi.nlm.nih.gov/39488798/', 'abstract': 'Int Urol Nephrol', 'keywords': 'No keywords available'}
