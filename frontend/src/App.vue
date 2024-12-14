@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div :class="{'main-centered': !content_exist, 'main-loaded': content_exist}">
     <!-- First slide container for the set of search engines -->
     <div class="slide_container">
       <div class="slide_name">
@@ -14,18 +14,6 @@
       <!-- Range slider bound to 'selected' -->
       <input type="range" min="1" max="6" v-model="selected" class="slider" id="myRange">
     </div>
-    <!-- Second slide container for the second set of search engines -->
-    <div class="slide_container">
-      <div class="slide_name">
-        <!-- Update the span to reflect the selected engine by adding 'active2' class -->
-        <span :class="{ active2: selected2 === '1' }">Gemini</span>
-        <span :class="{ active2: selected2 === '2' }">Pegasus+Gemini</span>
-        <span :class="{ active2: selected2 === '3' }">T5</span>
-        <span :class="{ active2: selected2 === '4' }">BART+Gemini</span>
-      </div>
-      <!-- Range slider bound to 'selected2' -->
-      <input type="range" min="1" max="4" v-model="selected2" class="slider" id="myRange2">
-    </div>
     <!-- Textarea for user input and a send button -->
     <div class="chat-input-container">
       <div class="chat-input-wrapper">
@@ -35,36 +23,56 @@
             <path d="M2.01 21l20.99-9L2.01 3 2 10l15 2-15 2z"/>
           </svg>
         </button>
+        <DownloadComponent></DownloadComponent>
         </div>
     </div>
+
     <div class="answer_container">
-      <div class="answer-input-wrapper">
-        <h5>Answer</h5>
+      <div v-if="loading" class="loader-wrapper">
+        <div v-if="loading" class="loader"></div>
+      </div>
+
+      <div v-if="answer" class="answer-input-wrapper">
+        <h5>Answer with context</h5>
         <div v-if="answer">
             <div v-html="answer" class="answer"></div>
         </div>
         <p v-else>Wait answer...</p>
-        <h5>AI</h5>
+        <h5>AI answer without context</h5>
         <div v-if="ai_answer" class = "ai_answer">-->
           <div v-html="ai_answer" class="ai-answer"></div>
         </div>
         <p v-else>Wait AI answer...</p>
       </div>
     </div>
-    <div class="source_container">
+
+    <div v-if="source" class="source_container">
       <table>
         <thead>
+          <tr>
+            <th>
+              <input type="text" id="filterTitle" v-model="filterTitle" placeholder="Enter title keyword">
+              <input type="number" id="filterYear" v-model="filterYear" placeholder="Enter year">
+            </th>
+            <th>
+              <input type="text" id="filterAuthor" v-model="filterAuthor" placeholder="Enter author name">
+            </th>
+          </tr>
           <tr>
             <th>Source</th>
             <th>Abstract</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(article, index) in articles" :key="index">
+          <tr v-for="(article, index) in filteredArticles" :key="index">
             <td>
-              <a :href="article.url" target="_blank" rel="noopener noreferrer">{{ article.source }} {{ article.year }}</a>
+              <a :href="article.url" target="_blank" rel="noopener noreferrer">{{ article.source }}</a>
+              <p>{{article.year}}</p>
             </td>
-            <td><p>{{ article.abstract }}</p><p>Authors:{{ article.authors}}</p></td>
+            <td>
+              <p>{{ article.abstract }}</p>
+              <p v-if="article.authors"> Authors: {{ article.authors}}</p>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -77,7 +85,11 @@
 <script>
 import axios from 'axios' // Importing axios for HTTP requests
 import { marked } from 'marked'
+import DownloadComponent from "@/components/DownloadComponent.vue";
 export default {
+  components: {
+        DownloadComponent
+  },
   data() {
     return {
       question: '',   // Holds the user question input
@@ -86,27 +98,29 @@ export default {
       ai_answer: '',
       articles: '',
       selected: "1",    // Value of the first search engine slider
-      selected2: "1",
+      loading: false,
+      content_exist: false,
+      filterYear: '',    // Filter year input
+      filterAuthor: '',  // New filter for author
+      filterTitle: '',
+      fileContent: '',  // To store the file content temporarily
+      fileName: 'example.txt',  // File name for the download
     }
   },
   methods: {
-
-    getDomain(url) {
-      try {
-        return new URL(url).hostname.replace('www.', '');
-      } catch (error) {
-        return url; // Fallback if URL parsing fails
-      }
-    },
     // Function to send the question to the backend
+    //'https://legally-full-parakeet.ngrok-free.app/api/check'
     sendQuestion() {
-      axios.post('http://20.123.47.146:8080/api/check', {
+      this.loading = true;
+      const contentElement = this.$el.querySelector('.fileContent'); // Fetch the element
+      const content = contentElement ? contentElement.innerHTML : '';
+      axios.post('https://legally-full-parakeet.ngrok-free.app/api/check', {
         question: this.question,
         searchEngine: this.selected,
-        aiEngine: this.selected2
-
+        fileContent: content,
       })
       .then(response => {
+        this.content_exist = true;
         console.log('Response from server:', response.data);
         this.answer = marked.parse(response.data.answer);
         this.source = response.data.source;
@@ -121,15 +135,53 @@ export default {
       })
       .catch(error => {
         console.error('Error:', error);
+      })
+      .finally(() => {
+      this.loading = false;
       });
-    }
+    },
+  },
+  computed: {
+    filteredArticles() {
+      return this.articles.filter(article => {
+        const matchesYear = this.filterYear ? article.year == this.filterYear : true;
+         const matchesAuthor = this.filterAuthor
+        ? (Array.isArray(article.authors)
+            ? article.authors.join(', ').toLowerCase().includes(this.filterAuthor.toLowerCase())
+            : (article.authors || '').toLowerCase().includes(this.filterAuthor.toLowerCase()))
+        : true;
+         const matchesTitle = this.filterTitle
+        ? article.source.toLowerCase().includes(this.filterTitle.toLowerCase())
+        : true;
+        return matchesYear && matchesAuthor && matchesTitle;
+      });
+    },
+  },
 
-  }
 }
 </script>
 
 <style scoped>
+.main-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
+.main-loaded {
+  font-family: DM Sans,sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loader-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .main{
   font-family: DM Sans,sans-serif;
   display: flex;
@@ -293,6 +345,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+    opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.send-button:hover {
+  opacity: 1;
 }
 
 .send-button svg {
@@ -364,5 +422,19 @@ tr{
 footer{
   height: 50px;
   width: 100%;
+}
+
+.loader {
+  border: 10px solid #d3d3d3;
+  border-top: 10px solid #000000;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
