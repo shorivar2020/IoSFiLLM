@@ -8,15 +8,6 @@ import nltk
 import logging
 
 
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-nltk.download('stopwords')
-nltk.download('punkt_tab')
-stop_words = set(stopwords.words("english"))
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-lemmatizer = WordNetLemmatizer()
-
-
 def clean_text(text):
     """
     Remove special characters, normalize whitespace, and convert to lowercase.
@@ -35,28 +26,29 @@ def correct_spelling(text):
     return corrected_text
 
 
-def extract_keywords(text):
-    tokens = word_tokenize(text)
-    lemmatized_tokens = [lemmatizer.lemmatize(token.lower()) for token in tokens if token.isalpha() and token.lower() not in stop_words]
-    return lemmatized_tokens
-
-
 def prepare_query(text):
     """
     Takes user input, cleans it, corrects it, and prepares a query.
     """
+    nltk.download('wordnet')
+    nltk.download('omw-1.4')
+    nltk.download('stopwords')
+    nltk.download('punkt_tab')
+    stop_words = set(stopwords.words("english"))
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    lemmatizer = WordNetLemmatizer()
+
     logging.info("User input: " + text)
     # Step 1: Clean the text
     cleaned_text = clean_text(text)
     logging.info(cleaned_text)
-
     # Step 2: Correct spelling and grammar
     corrected_text = correct_spelling(cleaned_text)
     logging.info(corrected_text)
     # Step 3: Extract keywords
-    keywords = extract_keywords(corrected_text)
+    tokens = word_tokenize(text)
+    keywords = [lemmatizer.lemmatize(token.lower()) for token in tokens if
+                token.isalpha() and token.lower() not in stop_words]
     logging.info(keywords)
     keywords.append(corrected_text)
     return ' '.join(keywords)
-
-

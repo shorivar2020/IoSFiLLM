@@ -1,18 +1,14 @@
 import re
-
+import os
+import requests
+from loguru import logger
 from scholarly import scholarly
 from googlesearch import search
 from duckduckgo_search import DDGS
 from bs4 import BeautifulSoup
-import os
-import requests
-import llm
-from Bio import Entrez
-import requests
-from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 from metapub import PubMedFetcher
-import pandas as pd
+import llm
 
 
 subscription_key = os.environ['BING_SEARCH_V7_SUBSCRIPTION_KEY']
@@ -37,8 +33,15 @@ def search_google(query, num_results):
         'num': num_results
     }
     response = requests.get('https://www.googleapis.com/customsearch/v1', params=params)
+    if response.status_code != 200:
+        logger.warning(f"API request failed with status {response.status_code}: {response.text}")
+
     links = []
-    for item in response.json()['items']:
+    items = response.json()['items']
+    if not items:
+        logger.warning(f"No search results returned for query: {query}")
+        return []
+    for item in items:
         links.append(item['link'])
     return links
 
@@ -87,9 +90,9 @@ def search_brave(query, num):
         urls = [result['url'] for result in results['web']['results'][:num]]
         return urls
     except requests.exceptions.HTTPError as err:
-        print(f"HTTP error occurred: {err}")
+        logger.error(f"HTTP error occurred: {err}")
     except Exception as e:
-        print(f"An error occurred: {e}")
+        logger.error(f"An error occurred: {e}")
 
 
 def search_scholar_links(question, num_results):
@@ -161,7 +164,7 @@ def search_pub_med(query, num):
     return articles, links, all_text
 
 
-def scrape_with_headers(url):
+def scrape_with_playwright(url):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
@@ -178,46 +181,38 @@ def scrape_with_headers(url):
         return content
 
 
-def parsing_web_page(url, accumulated_text, ai_engine):
+def parsing_web_page(model, url):
     """Fetch and parse content from a web page"""
     try:
         response = requests.get(url)
         if response.status_code != 200:
-            html = scrape_with_headers(url)
-            print(f"Failed to retrieve {url}")
+            logger.error(f"Failed to retrieve {url} try playwright")
+            html = scrape_with_playwright(url)
         else:
             html = response.text
         soup = BeautifulSoup(html, 'html.parser')
         elements = soup.find_all(['p', 'div', 'span', 'h1', 'h2', 'h3', 'li'])
+        accumulated_text = ""
         for element in elements:
             text = element.get_text(strip=True)
             if len(text) > 30:
                 accumulated_text += text
-        match ai_engine:
-            case "2":
-                summarization = llm.pegasus_summ(accumulated_text)
-            case "3":
-                summarization = llm.t5_summ(accumulated_text)
-            case "4":
-                summarization = llm.bart_summ(accumulated_text)
-            case _:
-                summarization = llm.gemini_summ(accumulated_text)
-        accumulated_text = f"Content from {url} amd ai_engine {ai_engine}:\n{summarization}\n\n"
+        summarization = llm.gemini_clean(model, accumulated_text)
+        accumulated_text = (f"Content from [{url}]: \n{summarization}\n"
+                            f"----------------------------------------------------------\n")
     except Exception as e:
-        print(f"Error parsing {url}: {e}")
+        logger.error(f"Error parsing {url}: {e}")
+        accumulated_text = (f"Error parsing {url}: {e}"
+                            f"----------------------------------------------------------\n")
+        return accumulated_text
     return accumulated_text
 
 
-def parsing_doc_db(results, ai_engine):
+def parsing_doc_db(results):
     links = []
     for r in results:
         # TODO implement ai_engine that check if it is relative doc
         links.append(r['link'])
-        # print(r['link'])
-        # print(r['abstract'])
-        # print(r['title'])
-        # print(r['keywords'])
-        # print("-------------------")
     return links
 
 
@@ -234,37 +229,22 @@ def fetch_html_data(url):
         return {"error": f"Unable to fetch the page, status code: {response.status_code}"}
 
 
-def links_parsing(links, ai_engine):
+def links_parsing(links, question):
     all_text = ''
     articles = []
     for link in links:
-        new_text = parsing_web_page(link, all_text, ai_engine)
+        model = llm.gemini_config()
+        new_text = parsing_web_page(model, link)
+        relativity = llm.gemini_relative(model, new_text, question)
+        if relativity == "NO":
+            continue
+        summ = llm.gemini_summ(model, new_text)
         articles.append({
             "title": link,
             "link": link,
-            "abstract": new_text,
+            "abstract": summ,
             "year": '',
             "author": ''
         })
         all_text += new_text
     return all_text, articles
-
-
-if __name__ == '__main__':
-    print("Start app")
-    # print(search_google("What is negative emotions?", 5))
-# print(search_scholar_links("What is negative emotions?", 5))
-#     print("Duck duck go")
-#     print(search_duckduckgo("What is negative emotions?", 5))
-#     print("Bing")
-#     print(search_bing("What is negative emotions?", 5))
-#     print("Brave")
-    # print(search_brave("What is negative emotions?", 5))
-    # print("Google Scholar")
-    # for res in search_scholar_links("What is negative emotions?", 5):
-    #     print(res['link'])
-    # print("Pub med")
-    # for res in search_pub_med("What is negative emotions?", 5):
-    #     print(res)
-    # print(search_pub_med("Indicate ibuprofen", 5))
-    # print(search_scholar_links("Indicate ibuprofen", 5))
