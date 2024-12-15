@@ -20,42 +20,59 @@ def allowed_file(filename):
 
 
 @app.route('/api/download', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
+def upload_files():
+    if 'file_0' not in request.files:
+        return jsonify({"error": "No files provided"}), 400
 
-    file = request.files['file']
+    files = request.files  # Получить все файлы из запроса
+    processed_files = []  # Для хранения информации о каждом обработанном файле
+    logger.info("files")
+    for key in files:
+        file = files[key]
+        file_name = file.filename
+        logger.info("file with name " + file_name)
+        if file_name == '':
+            return jsonify({"error": f"File {key} has no name"}), 400
 
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+        if file and allowed_file(file_name):
+            try:
+                filename = secure_filename(file_name)
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(file_path)
 
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
+                file_extension = filename.rsplit('.', 1)[1].lower()
+                file_content = ""
 
-        file_extension = filename.rsplit('.', 1)[1].lower()
-        file_content = ""
+                if file_extension == 'txt':
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        file_content = f.read()
 
-        # Read and return the content of the text file
-        try:
-            if file_extension == 'txt':
-                # Read text file content
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    file_content = f.read()
+                elif file_extension == 'pdf':
+                    with open(file_path, 'rb') as f:
+                        pdf_reader = PyPDF2.PdfReader(f)
+                        for page in pdf_reader.pages:
+                            file_content += page.extract_text()
 
-            elif file_extension == 'pdf':
-                # Read PDF file content
-                with open(file_path, 'rb') as f:
-                    pdf_reader = PyPDF2.PdfReader(f)
-                    for page in pdf_reader.pages:
-                        file_content += page.extract_text()
-            summ = process_download_document(file_content)
-            return jsonify({"file_content": summ}), 200
-        except Exception as e:
-            return jsonify({"error": f"Failed to process file: {str(e)}"}), 500
+                summary = process_download_document(file_content)
 
-    return jsonify({"error": "File type not allowed"}), 400
+                processed_files.append({
+                    "file_name": file_name,
+                    "file_content": summary
+                })
+                logger.info(f"Processed {file_name}")
+
+            except Exception as e:
+                return jsonify({"error": f"Failed to process file {file_name}: {str(e)}"}), 500
+            finally:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+        else:
+            return jsonify({"error": f"File type not allowed for {file_name}"}), 400
+    logger.info(f"Processed {len(processed_files)} files")
+    return jsonify({
+        "files_name": [file["file_name"] for file in processed_files],
+        "files_content": [file["file_content"] for file in processed_files]
+    }), 200
 
 
 @app.after_request
@@ -71,10 +88,11 @@ def check_question():
     question = data.get('question', '').lower()
     search_engine = data.get('searchEngine', 1)
     file_content = data.get('fileContent', '')
-    print("Received question:", question)
-    print("Search engine selected:", search_engine)
-    print("File content:", file_content)
-    num_results = 10
+    num_results = int(data.get('resultNumber', 1))
+    logger.info("Received question: ", question)
+    logger.info("Search engine selected: ", search_engine)
+    logger.info("File content: ", file_content)
+    logger.info("Num results: ", num_results)
     answer, source, articles, ai_answer = controller(question, search_engine, num_results, file_content)
     return jsonify({"answer": answer, "source": source, "ai_answer": ai_answer, "articles": articles})
 

@@ -37,7 +37,11 @@ def search_google(query, num_results):
         logger.warning(f"API request failed with status {response.status_code}: {response.text}")
 
     links = []
-    items = response.json()['items']
+    if 'items' in response.json():
+        items = response.json()['items']
+    else:
+        print("No 'items' key in response:", response.json())
+        return []
     if not items:
         logger.warning(f"No search results returned for query: {query}")
         return []
@@ -115,22 +119,28 @@ def search_scholar_links(question, num_results):
             year = possible_year.group(0) if possible_year else ''
         author = result['bib'].get('author', '')
         pub_url = result.get('pub_url', None)
-        links.append(pub_url)
-        # Prepare the data to append
-        article = {
-            'title': title,
-            'abstract': abstract,
-            "year": year,
-            "author": author,
-            'keywords': keywords,
-            'link': pub_url if pub_url else 'No link available'
-        }
-        articles.append(article)
-        all_text += abstract
-        # Stop after the desired number of results
-        count += 1
-        if count >= num_results:
-            break
+        model = llm.gemini_config()
+        llm.gemini_relative(model, abstract, question)
+        if "YES" in llm.gemini_relative(model, abstract, question):
+            links.append(pub_url)
+            # Prepare the data to append
+            article = {
+                'title': title,
+                'abstract': abstract,
+                "year": year,
+                "author": author,
+                'keywords': keywords,
+                'link': pub_url if pub_url else 'No link available'
+            }
+            articles.append(article)
+            accumulated_text = (f"Content from [{pub_url}]: \n{abstract}\n"
+                                f"----------------------------------------------------------\n")
+
+            all_text += accumulated_text
+            # Stop after the desired number of results
+            count += 1
+            if count >= num_results:
+                break
 
     return articles, links, all_text
 
@@ -152,15 +162,20 @@ def search_pub_med(query, num):
         journal = fetch.article_by_pmid(pmid).journal
         citation = fetch.article_by_pmid(pmid).citation
         link = "https://pubmed.ncbi.nlm.nih.gov/" + pmid + "/"
-        articles.append({
-            "title": title,
-            "link": link,
-            "abstract": abstract,
-            "year": year,
-            "author": author
-        })
-        links.append(link)
-        all_text += abstract
+        model = llm.gemini_config()
+        llm.gemini_relative(model, abstract, query)
+        if "YES" in llm.gemini_relative(model, abstract, query):
+            articles.append({
+                "title": title,
+                "link": link,
+                "abstract": abstract,
+                "year": year,
+                "author": author
+            })
+            accumulated_text = (f"Content from [{link}]: \n{abstract}\n"
+                                f"----------------------------------------------------------\n")
+            links.append(link)
+            all_text += accumulated_text
     return articles, links, all_text
 
 
@@ -197,9 +212,10 @@ def parsing_web_page(model, url):
             text = element.get_text(strip=True)
             if len(text) > 30:
                 accumulated_text += text
-        summarization = llm.gemini_clean(model, accumulated_text)
-        accumulated_text = (f"Content from [{url}]: \n{summarization}\n"
-                            f"----------------------------------------------------------\n")
+        if accumulated_text:
+            summarization = llm.gemini_clean(model, accumulated_text)
+            accumulated_text = (f"Content from [{url}]: \n{summarization}\n"
+                                f"----------------------------------------------------------\n")
     except Exception as e:
         logger.error(f"Error parsing {url}: {e}")
         accumulated_text = (f"Error parsing {url}: {e}"
@@ -232,19 +248,21 @@ def fetch_html_data(url):
 def links_parsing(links, question):
     all_text = ''
     articles = []
+    relative_links = []
     for link in links:
         model = llm.gemini_config()
         new_text = parsing_web_page(model, link)
-        relativity = llm.gemini_relative(model, new_text, question)
-        if relativity == "NO":
-            continue
-        summ = llm.gemini_summ(model, new_text)
-        articles.append({
-            "title": link,
-            "link": link,
-            "abstract": summ,
-            "year": '',
-            "author": ''
-        })
-        all_text += new_text
-    return all_text, articles
+        if new_text != "":
+            if "YES" in llm.gemini_relative(model, new_text, question):
+                logger.info("Append source")
+                relative_links.append(link)
+                summ = llm.gemini_summ(model, new_text)
+                articles.append({
+                    "title": link,
+                    "link": link,
+                    "abstract": summ,
+                    "year": '',
+                    "author": ''
+                })
+                all_text += new_text
+    return all_text, articles, relative_links

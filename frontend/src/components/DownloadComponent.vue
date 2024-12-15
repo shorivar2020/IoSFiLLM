@@ -1,5 +1,5 @@
 <template>
-    <button class="send-button" @click="selectAndUploadFile">
+    <button class="send-button" @click="selectAndUploadFiles">
        <img
            src="../../public/upload-sign-svgrepo-com.png"
            alt="Upload_icon"
@@ -10,7 +10,7 @@
     <input
       type="file"
       ref="fileInput"
-      @change="uploadFile"
+      @change="uploadFiles"
       style="display: none;"
     />
     <div v-if="uploading">Uploading...</div>
@@ -19,9 +19,15 @@
           <p>An error occurred during upload!</p>
           <button @click="uploadError = false">Close</button>
         </div>
+    </div>
+    <div v-if="files_content">
+      <div v-for="(content, index) in files_content" :key="index" >
+        <p>
+          <strong>File Name:</strong> {{ files_name[index] }}
+          <button @click="removeFile(index)" class="remove-button">✖</button>
+        </p>
+        <div v-html="content" class="fileContent"></div>
       </div>
-    <div v-if="fileContent">
-      <div v-html="fileContent" class="fileContent"></div>
     </div>
 </template>
 
@@ -31,29 +37,32 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      selectedFile: null,
+      selectedFiles: [],
       uploading: false,
       uploadError: false,
       uploadSuccess: false,
-      fileContent: '',
+      files_content: [],
+      files_name: [],
     };
   },
   methods: {
-     selectAndUploadFile() {
+     selectAndUploadFiles() {
       // Programmatically trigger file input click
       this.$refs.fileInput.click();
     },
-    async uploadFile(event) {
+    async uploadFiles(event) {
       // Get the file from the input field
-      this.selectedFile = event.target.files[0];
+      this.selectedFiles = Array.from(event.target.files);
 
-      if (!this.selectedFile) {
-        alert("Please select a file to upload");
+      if (!this.selectedFiles.length) {
+        alert("Please select at least one file to upload");
         return;
       }
 
       const formData = new FormData();
-      formData.append('file', this.selectedFile);
+      this.selectedFiles.forEach((file, index) => {
+        formData.append(`file_${index}`, file);
+      });
 
       this.uploading = true;
       this.uploadError = false;
@@ -65,11 +74,13 @@ export default {
             'Content-Type': 'multipart/form-data',
           },
         });
-
+        console.log(response.status)
+        console.log(response.data)
         if (response.status === 200) {
           this.uploadSuccess = true;
           console.log('Response from server:', response.data);
-          this.fileContent = response.data.file_content;
+          this.files_content = [...this.files_content, ...response.data.files_content];
+          this.files_name = [...this.files_name, ...response.data.files_name];
         }
       } catch (error) {
         this.uploadError = true;
@@ -77,17 +88,15 @@ export default {
         this.uploading = false;
       }
     },
-    handleFileChange(event) {
-      // Get the file from the input field
-      this.selectedFile = event.target.files[0];
-    },
-
+    removeFile(index) {
+    this.files_content.splice(index, 1); // Удаляем содержимое файла
+    this.files_name.splice(index, 1);   // Удаляем имя файла
+  },
   },
 };
 </script>
 
 <style scoped>
-
 .fileContent{
   display: none;
 }

@@ -1,245 +1,47 @@
-Content from [https://jamanetwork.com/journals/jamapediatrics/fullarticle/485730]: 
-Efficacy and Safety of Acetaminophen vs Ibuprofen for Treating Children's Pain or Fever: A Meta-analysis
-
-**Abstract**
-
-**Objective:** To summarize studies testing the efficacy and safety of single-dose acetaminophen and ibuprofen for treating children's pain or fever.
-
-**Data Sources:** Reports were gathered by searching computerized databases (from their inception through May 2002) and registries, relevant journals, and bibliographies of key articles.
-
-**Study Selection:** Seventeen blinded, randomized controlled trials with children (<18 years) receiving either drug to treat fever or moderate to severe pain.
-
-**Data Extraction:** Under a fixed-effects model, outcome measures for an initial single dose of ibuprofen vs acetaminophen were the risk ratio for achieving more than 50% of maximum pain relief, effect size for febrile temperature reduction, and risk ratio for minor and major harm.
-
-**Data Synthesis:** Ibuprofen (4-10 mg/kg) and acetaminophen (7-15 mg/kg) showed comparable efficacy (3 pain relief trials; 186 children).  Ibuprofen (5-10 mg/kg) reduced temperature more than acetaminophen (10-15 mg/kg) at 2, 4, and 6 hours after treatment (9 fever trials; 1078 children). There was no evidence the drugs differed from each other (or placebo) in incidence of minor or major harm (17 safety trials; 1820 children).
-
-**Conclusions:** In children, single doses of ibuprofen (4-10 mg/kg) and acetaminophen (7-15 mg/kg) have similar efficacy for relieving moderate to severe pain, and similar safety as analgesics or antipyretics. Ibuprofen (5-10 mg/kg) was a more effective antipyretic than acetaminophen (10-15 mg/kg) at 2, 4, and 6 hours post-treatment.
-
-
-**Introduction**
-
-Acetaminophen and ibuprofen are widely prescribed in children.  For adult analgesia, research has shown ibuprofen to be just as or more effective than acetaminophen.  A clear picture has not yet emerged from studies with children comparing the two drugs.  This meta-analysis investigated three questions: (1) their relative efficacy for treating pain, (2) their relative efficacy for treating fever, and (3) their safety compared with each other and with placebo.
-
-**Methods**
-
-* **Data sources:**  Multiple electronic databases were searched.
-* **Inclusion and exclusion criteria:** Studies included children under 18 receiving either drug for fever or moderate to severe pain, randomly allocated to treatment arms in a blinded design. Studies were excluded if prior/concurrent medication was a potential confound, data were already included in another study, or insufficient data were provided.
-* **Data extraction and outcome definitions:** Independent coders were blinded to identifying information.  Outcome measures were defined for pain relief, fever reduction, and safety (minor and major harm).
-* **Data analysis:** Data were analyzed under a fixed-effects inverse-variance model.  A homogeneity statistic (Q) was calculated.
-
-
-**Results**
-
-* **Trials:** Seventeen trials met the inclusion criteria.
-* **Pain:**  Ibuprofen and acetaminophen showed comparable efficacy.
-* **Fever:** Ibuprofen (5-10 mg/kg) was a more effective antipyretic than acetaminophen (10-15 mg/kg).  This was more pronounced at 4 and 6 hours post-treatment.
-* **Safety:** There was no evidence that the drugs differed from each other or placebo in safety.
-
-
-**Comment**
-
-The findings are discussed in detail for pain, fever, and safety, including limitations of the study and implications for future research.
-
-**Conclusions and Implications for Practice**
-
-Ibuprofen and acetaminophen are widely available.  Based on evidence published up to May 2002:
-
-1.  Ibuprofen (4-10 mg/kg) is as effective a pediatric analgesic as acetaminophen (7-15 mg/kg).
-2.  Ibuprofen (5-10 mg/kg), especially a 10-mg/kg dosage, is a more efficacious pediatric antipyretic than acetaminophen (10-15 mg/kg).
-3.  There is no indication that the drugs differ in safety.
-
-More research is required.  For pediatric antipyresis, ibuprofen (5-10 mg/kg) should generally be preferred over acetaminophen (10-15 mg/kg) for short-term use.  For analgesia, the data do not support a clear preference.
-
-
-**What This Study Adds**
-
-This meta-analysis contradicts prior literature reviews by showing ibuprofen's superiority as an antipyretic while finding no difference in analgesic efficacy or safety.
-
-----------------------------------------------------------
-Error parsing https://www.medsafe.govt.nz/profs/datasheet/i/IbuprofenRelieveTab.pdf: Page.goto: net::ERR_ABORTED at https://www.medsafe.govt.nz/profs/datasheet/i/IbuprofenRelieveTab.pdf
-Call log:
-navigating to "https://www.medsafe.govt.nz/profs/datasheet/i/IbuprofenRelieveTab.pdf", waiting until "load"
-----------------------------------------------------------
-Content from [https://www.ncbi.nlm.nih.gov/books/NBK542299/]: 
-Ibuprofen: A Comprehensive Review
-
-**Continuing Education Activity**
-
-Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to manage various conditions, including inflammatory diseases, rheumatoid disorders, mild to moderate pain, fever, dysmenorrhea, and osteoarthritis.  It's available over-the-counter and in prescription strength. This review covers ibuprofen's mechanism of action, adverse effects, dosing, pharmacokinetics, contraindications, box warnings, and monitoring protocols.  Understanding ibuprofen's pharmacology helps healthcare professionals optimize dosage and minimize adverse effects. This review also discusses the interprofessional healthcare team's role in providing quality patient care using ibuprofen therapy.
-
-**Objectives:**
-
-* Identify clinical indications for ibuprofen therapy.
-* Evaluate potential adverse reactions associated with ibuprofen administration.
-* Implement effective monitoring strategies for patients receiving ibuprofen therapy.
-* Implement effective collaboration and communication between interprofessional team members to improve care for patients using ibuprofen therapy.
-
-
-**Indications**
-
-Ibuprofen is FDA-approved to treat inflammatory and rheumatoid disorders.  Most current research focuses on comparing its efficacy against other NSAIDs (especially COX-2 inhibitors) or novel treatments.  FDA-approved indications include:
-
-* **Oral:** Osteoarthritis, Rheumatoid disorders
-* **Intravenous injection:** Mild to moderate pain, Moderate to severe pain (adjunct to opioids), Fever (adults and pediatrics ≥3 months)
-* **Intravenous ibuprofen lysine:** Patent ductus arteriosus (PDA)
-* **Over-the-counter:** Mild to moderate pain (fever, musculoskeletal pain, primary dysmenorrhea, headache/migraine, sore throat, cold/flu, arthralgia, odontalgia)
-
-
-**Off-Label Uses**
-
-Ibuprofen may be used for conditions not FDA-approved, including: active arthritis, acute gout, pericarditis, postoperative pain, colorectal cancer prevention, and chemotherapy resistance prevention.
-
-
-**Mechanism of Action**
-
-Ibuprofen primarily inhibits prostaglandin precursors by inhibiting cyclooxygenase (COX) enzymes.  COX-1 is inhibited more strongly than COX-2.  COX-2 inhibition is implicated in ibuprofen's anti-cancer effects. Other pathways, such as lipoxygenase (LOX), may also be involved in ibuprofen's effects.
-
-
-**Pharmacokinetics**
-
-* **Absorption:** Rapid and complete after oral administration; food reduces Cmax and delays Tmax.
-* **Distribution:** Highly bound to plasma proteins (≈99%).
-* **Metabolism:** Primarily metabolized into hydroxylated and carboxylated compounds by CYP2C9 and CYP2C8.
-* **Elimination:** Primarily excreted in urine as metabolites.
-
-
-**Administration**
-
-Ibuprofen is available in various forms (oral capsules, suspension, tablets, chewable tablets, intravenous solutions, topical gels). Intravenous ibuprofen lysine is commonly used for PDA closure in premature infants.  It shouldn't be administered simultaneously with total parenteral nutrition, though sequential administration through the same IV line is possible.
-
-**Adult Dosage:**
-
-* Pain relief: 200-400 mg orally every 4-6 hours, max 1200 mg/day (or higher doses as prescribed).
-* Joint inflammation: 1800-2400 mg/day.
-* Pericarditis: 600-800 mg every 8 hours.
-
-
-**Specific Patient Populations**
-
-* **Hepatic impairment:** Use with caution.
-* **Renal impairment:**  Adjust dosage and interval based on GFR; avoid in patients with GFR <30 mL/min/1.73 m².
-* **Pregnancy:** Use restricted after 20 weeks; not recommended after 30 weeks.
-* **Breastfeeding:** Preferred over other NSAIDs due to low levels in breast milk.
-* **Pediatric patients:** 5-10 mg/kg orally every 6-8 hours, max 40 mg/kg/day.
-* **Older patients:** Long-term use only when necessary, often with gastroprotective agents.  Adjust dose based on eGFR.
-
-
-**Adverse Effects**
-
-* **Gastrointestinal:** Bleeding, gastritis, ulceration, perforation. Risk increased in older patients and those with pre-existing GI conditions.
-* **Renal:** Reduced renal function, acute kidney injury (AKI). Risk increased in dehydrated patients.
-* **Skin:** Rashes (hypersensitivity or irritation), anaphylaxis, DRESS syndrome.
-* **Cardiovascular:** Hypertension, increased risk of myocardial infarction and stroke.
-
-
-**Drug-Drug Interactions**
-
-* ACE inhibitors: May reduce antihypertensive effects.
-* Aspirin: Interferes with aspirin's antiplatelet effects.
-* Diuretics: May reduce diuretic efficacy; increased AKI risk.
-* Lithium: May increase lithium levels.
-* Anticoagulants: Increases risk of GI bleeding.
-
-
-**Contraindications**
-
-Hypersensitivity to ibuprofen, other NSAIDs, or aspirin.  Additional contraindications for IV ibuprofen lysine in preterm neonates include congenital heart disease requiring PDA patency, active bleeding, thrombocytopenia, renal impairment, coagulation defects, and suspected necrotizing enterocolitis.  Canada's drug labels list additional contraindications.
-
-
-**Box Warnings**
-
-* Cardiovascular thrombotic events (MI, stroke).
-* Gastrointestinal adverse events (bleeding, perforation, ulceration).
-
-
-**Warning and Precautions**
-
-Ibuprofen lysine is specifically indicated for PDA closure; regular ibuprofen is not a substitute.  Environmental concerns exist regarding ibuprofen's presence and long-term effects.
-
-
-**Monitoring**
-
-Monitor pain relief, GI symptoms, blood pressure (especially in older adults), renal function (especially in at-risk patients), and liver function (in high-risk individuals).
-
-
-**Toxicity**
-
-Ibuprofen overdose can cause severe toxicity, especially in children.  Complications include seizures, apnea, hypertension, and renal/hepatic dysfunction.  There's no specific antidote; management involves supportive care and interventions such as CRRT or hemodialysis.
-
-
-**Enhancing Healthcare Team Outcomes**
-
-Successful ibuprofen therapy requires updated clinical knowledge, patient understanding, and evidence-based treatment goals. Collaboration between the primary clinician, physicians, advanced practice providers, nursing staff, and pharmacists is crucial for optimizing patient care and minimizing adverse events.  This includes appropriate prescribing, documentation of use, monitoring, and awareness of potential drug interactions and contraindications.
-
-
-**References**
-
-(List of references omitted for brevity, but are present in the original text.)
-
-----------------------------------------------------------
 Content from [https://pubmed.ncbi.nlm.nih.gov/10234601/]: 
-A meta-analysis compared adverse experiences (AEs) during multiple-dose nonprescription ibuprofen use to a placebo. Eight studies (800-1200 mg/day, 1-10 days) were included. AEs were classified using COSTART (abdominal pain reassigned to the digestive system).  Ibuprofen-treated subjects (n=1094) had numerically less or equal AE frequency than placebo (n=1093). Pooled data showed placebo subjects reported AEs significantly more often (31.7% vs 27.4%, p=0.018). Digestive system AE frequency was comparable (p=0.420, placebo 11.0%, ibuprofen 12.1%).  "Body-as-a-whole" AEs were significantly higher in placebo (20.4% vs 14.8%, p<0.001). Severe AEs were lower with ibuprofen.  Nonprescription ibuprofen shows an excellent side effect profile in multiple-dose use, with gastrointestinal AEs comparable to placebo.  PMID: 10234601
+A meta-analysis compared adverse experiences (AEs) during multiple-dose nonprescription ibuprofen use to placebo.  Eight studies (800-1200 mg/day ibuprofen for 1-10 days) were included. AEs were classified using COSTART (abdominal pain reassigned to the digestive system).  Overall AE frequency was numerically less in ibuprofen-treated subjects (n=1094) than placebo (n=1093).  Pooled data showed placebo subjects reported AEs significantly more often (31.7% vs 27.4%, p=0.018). Digestive system AE frequency was comparable (p=0.420, 11.0% placebo vs 12.1% ibuprofen).  "Body-as-a-whole" AEs were significantly higher in placebo (20.4% vs 14.8%, p<0.001). Severe AEs were lower with ibuprofen.  Nonprescription ibuprofen shows an excellent side effect profile in multiple-dose use, with gastrointestinal AEs comparable to placebo.  PMID: 10234601
 
 
-**Similar articles (partial list):**
+**Additional Information (from the original text):**
 
-* The hepatic safety and tolerability of the cyclooxygenase-2 selective NSAID celecoxib: pooled analysis of 41 randomized controlled trials.  PMID: 19530981
-* Nonprescription ibuprofen: side effect profile. PMID: 1437701
-* [Focus on the safety of ibuprofen at the analgesic-antipyretic dose]. PMID: 8953831
-* Low-dose cyclobenzaprine versus combination therapy with ibuprofen for acute neck or back pain with muscle spasm: a randomized trial. PMID: 16197668
-* Gastrointestinal tolerability of aspirin and the choice of over-the-counter analgesia for short-lasting acute pain. PMID: 19250138
+* **Publication:**  The safety profile of nonprescription ibuprofen in multiple-dose use: a meta-analysis.  D E Kellstein et al. J Clin Pharmacol. 1999 May;39(5):520-32.
+* **Authors:** D E Kellstein, J A Waksman, S A Furey, G Binstok, S A Cooper.  Affiliation: Whitehall-Robins Healthcare, Madison, New Jersey 07940, USA.
 
 
-**Cited by articles (partial list):**
-
-* Patient prognosis and prediction model for taking Kampo formulas in dysmenorrhea: An observational study. PMID: 38050203
-* A randomized, double-blind pilot study of analgesic and anti-inflammatory effects of naproxen sodium and acetaminophen following dental implant placement surgery. PMID: 37266144
-* Ibuprofen Arginate for Rapid-Onset Pain Relief in Daily Practice: A Review of Its Use in Different Pain Conditions. PMID: 33531831
-* Short-term application of ibuprofen before ovulation. PMID: 33123693
-* Nonsteroidal Anti-Inflammatory Drugs and Opioids in Postsurgical Dental Pain. PMID: 32286125
-
-
-**Journal:**  J Clin Pharmacol. 1999 May;39(5):520-32.
-
-**Authors:** D E Kellstein, J A Waksman, S A Furey, G Binstok, S A Cooper.
+The remaining text was removed as it consisted of website navigation, repeated government website verification messages, error messages, and multiple copies of the same information.
 
 ----------------------------------------------------------
-Content from [https://pmc.ncbi.nlm.nih.gov/articles/PMC3904382/]: 
-**A Molecular Mechanism for Ibuprofen-Mediated RhoA Inhibition in Neurons**
+Content from [https://pmc.ncbi.nlm.nih.gov/articles/PMC6753944/]: 
+Variability in the Analgesic Response to Ibuprofen Is Associated With Cyclooxygenase Activation in Inflammatory Pain
 
 **Abstract**
 
-Ibuprofen inhibits intracellular signaling of RhoA and promotes axonal growth and functional recovery following spinal cord lesions.  The molecular mechanisms by which ibuprofen inhibits the RhoA signal in neurons remain unclear. This study reports that the transcription factor peroxisome proliferator-activated receptor γ (PPARγ) is essential for coupling ibuprofen to RhoA inhibition and subsequent neurite growth promotion. Ibuprofen activates PPARγ. PPARγ activation mimics ibuprofen's RhoA-inhibiting properties and promotes neurite elongation in primary cultured neurons exposed to axonal growth inhibitors. PPARγ knockdown blocks RhoA suppression by PPARγ agonists. Selective PPARγ inhibition prevents ibuprofen's effect on RhoA activity and neurite growth.  These findings support PPARγ's essential role in mediating ibuprofen's RhoA-inhibiting effect.  Elucidation of this mechanism may provide additional therapeutic targets for disorders characterized by RhoA activation.
+The mechanisms underlying interindividual variability in analgesic efficacy of nonsteroidal anti-inflammatory drugs (NSAIDs) are not well understood.  This study performed pain phenotyping, functional neuroimaging, pharmacokinetic/pharmacodynamic assessments, inflammation biomarkers, and gene expression profiling in healthy subjects who underwent surgical extraction of bony impacted third molars and were treated with ibuprofen (400 mg; N=19) or placebo (N=10). Analgesic efficacy was not associated with demographic or clinical characteristics, ibuprofen pharmacokinetics, or the degree of cyclooxygenase inhibition by ibuprofen. Compared with partial responders to ibuprofen (N=9, required rescue medication within the dosing interval), complete responders (N=10, no rescue medication) exhibited greater induction of urinary prostaglandin metabolites and serum tumor necrosis factor-α and interleukin 8. Differentially expressed genes in peripheral blood mononuclear cells were enriched for inflammation-related pathways. These findings suggest that a less pronounced activation of the inflammatory prostanoid system is associated with insufficient pain relief on ibuprofen alone and the need for additional therapeutic intervention.
+
 
 **Introduction**
 
-Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) with targets including nuclear factor-κB, PPARγ, and RhoA.  It may reduce Alzheimer's disease risk via mechanisms independent of cyclooxygenase inhibition.  Studies suggest ibuprofen reduces amyloid-β42 generation via RhoA inactivation. RhoA activation limits axonal regeneration and induces glial apoptosis following CNS injuries. RhoA inhibition improves recovery from spinal cord injuries.  This study investigates the molecular mechanisms by which ibuprofen inhibits RhoA signaling in neurons.
+Although acute pain can serve an adaptive function, inadequate pain management can delay healing. Opioids are important for postoperative pain management, but overprescription contributes to the opioid epidemic.  NSAIDs inhibit cyclooxygenase (COX) enzymes, reducing prostanoid synthesis.  In inflammatory pain, prostanoids promote sensitization. NSAIDs are effective when COX pathway activation is a key mechanism, such as in third molar extraction. While NSAIDs are effective on average, 20–30% of patients require opioid rescue medication.  Precision medicine approaches could optimize NSAID therapy and reduce opioid prescriptions. This study used deep phenotyping to characterize factors associated with ibuprofen's variable efficacy after third molar extraction.
 
-**Materials and Methods**
-
-* **Neuronal cell line cultures and PPARγ activity assay:**  PC12 and B104 cells were cultured and treated with ibuprofen, naproxen, PPARγ agonists (GW1929, rosiglitazone), and a PPARγ antagonist (GW9662). PPARγ activity was assessed using a PPRE-x3-TK-Luc reporter vector.
-* **RNA interference for PPARγ:** PC12 cells were transfected with siRNA specific for PPARγ or a control siRNA.
-* **RhoA activity assay:** GTP-bound RhoA levels were measured in PC12 cells using GST-rhotekin binding domain (RBD) precipitation and Western blotting.
-* **Primary neuronal cultures and neurite outgrowth assay:** Adult mouse DRG and P7–P9 mouse CGN neurons were cultured and treated with vehicle, PPARγ agonists, ibuprofen, GW9662, and actinomycin D (ActD). Neurite outgrowth was quantified using NIH Image software.
 
 **Results**
 
-* Ibuprofen activates PPARγ in PC12 and B104 cells in a dose-dependent manner; naproxen does not.
-* PPARγ agonists suppress RhoA activation induced by CNS myelin or CSPG in PC12 cells. PPARγ knockdown blocks this effect.
-* PPARγ activation promotes neurite outgrowth in primary cultured neurons exposed to axonal growth inhibitors.
-* PPARγ inhibition blocks ibuprofen's RhoA-inhibiting function and its neurite growth-promoting effect.
+Ibuprofen was significantly more effective than placebo.  Complete responders (no rescue medication) showed greater induction of urinary prostaglandin metabolites and serum TNF-α and IL-8 compared to partial responders (required rescue medication). Differentially expressed genes in PBMCs were enriched for inflammation-related pathways.
+
 
 **Discussion**
 
-Ibuprofen effectively activates PPARγ in neuronal cells, unlike naproxen. PPARγ activation suppresses RhoA activity and promotes neurite growth.  PPARγ antagonism or knockdown eliminates ibuprofen's RhoA-inhibiting and neurite growth-promoting effects.  The Src homology region 2-containing protein tyrosine phosphatase-2 (SHP-2) may be involved in mediating PPARγ's effects on RhoA.  Targeting PPARγ may offer therapeutic approaches for disorders involving RhoA activation.
+Pain is complex, with interindividual variability in analgesic effectiveness.  This study used multiple techniques to differentiate between partial and complete responders.  Response to ibuprofen could not be predicted by clinical characteristics, pharmacokinetics, or pharmacodynamics. Complete responders had higher urinary PG metabolites, suggesting greater COX pathway activation. Third molar extraction caused a systemic inflammatory response. Complete responders showed greater increases in serum TNF-α and IL-8.  Complete responders exhibited fewer differentially expressed genes and lower inflammatory gene expression. This suggests differences in COX pathway regulation and inflammatory response contribute to ibuprofen's variable efficacy.  Limitations include small sample size and focus on healthy young adults.
 
-**Footnotes**
 
-Funding sources and acknowledgements are listed.
+**Conclusion**
 
-**References**
+Marked interindividual variability in ibuprofen's analgesic efficacy after third molar extraction is not explained by clinical characteristics, ibuprofen plasma concentrations, or COX inhibition. Differences in urinary PG metabolites, serum cytokines, and gene expression suggest that inflammatory response regulation differs between responders. Identifying biomarkers predictive of NSAID response could limit unnecessary opioid prescriptions.
 
-A list of references is provided.
+
+**Methods**
+
+Healthy subjects (≥18 years) undergoing third molar extraction were enrolled.  Subjects abstained from analgesics for one week prior to surgery.  Baseline blood and urine samples were collected. Pain intensity was reported every 15 minutes (0-10 scale). Ibuprofen (400 mg) or placebo was administered after a pain score ≥4. fMRI scanning continued for up to 60 minutes. Rescue medication (hydrocodone 5 mg/acetaminophen 325 mg) was allowed. Post-surgery blood and urine samples were collected at ~1.5 and ~3 hours post-drug administration.  COX activity (in vivo and ex vivo), plasma drug concentrations, serum cytokines (IL-6, IL-8, IL-10, TNF-α, MCP-1), and gene expression in PBMCs were analyzed.  Statistical analyses included t-tests, ANOVA, nonparametric equivalents, log-rank test, and Wilcoxon rank-sum test.  Data are accessible through Gene Expression Omnibus Series accession number GSE120596.
 
 ----------------------------------------------------------
 Content from [https://pubmed.ncbi.nlm.nih.gov/16813969/]: 
@@ -255,103 +57,12 @@ Systematic review: intravenous Ibuprofen in preterm newborns
 
 **Abstract:** Ibuprofen, a nonsteroidal antiinflammatory drug, widely used as antipyretic, antiinflammatory, and analgesic agent and for therapy of arthritis, exerts a dose-dependent constriction of the ductus arteriosus in newborn lambs. Two intravenous preparations, namely ibuprofen lysine and ibuprofen-THAM, have been studied in preterm newborns with patent ductus arteriosus. Clinical trials have compared IV ibuprofen to placebo, or to indomethacin. Pharmacodynamic effects of this drug before and after its administration have also been evaluated. Compared with placebo, IV ibuprofen effectively closed PDA with minimal effect on renal function. One study using intravenous ibuprofen-THAM showed decreased renal function and increased risk of NEC and PPHN. Compared with indomethacin, IV ibuprofen lysine exerted similar efficacy (75% to 93% closure). However, indomethacin increased abnormal renal function and decreased mesenteric and cerebral blood flow and bio-energetics. Two clinical trials showed that ibuprofen did not reduce the incidence of intraventricular hemorrhage compared with placebo. The drug has prolonged elimination (plasma half-life = ca 23 hours), suggesting that once daily dosing is appropriate. Dose finding studies indicate that a starting dose of 10 mg/kg followed by 5 mg/kg/d for 2 more days provides optimal efficacy with the least adverse effects. Neonatal data on ibuprofen and indomethacin indicate that, on the first day of life when IVH prevention is desired, indomethacin and not ibuprofen should be used since ibuprofen has no effect on IVH risk. On or after the second day of postnatal life, when early or therapeutic PDA closure is needed, ibuprofen and not indomethacin is probably the first choice due to its better adverse event profile.
 
-**Similar articles:**  (List of similar articles with authors, journal, year, PMID, and article type is present in the original text but omitted here for brevity.  This information is readily available via the PMID numbers provided.)
+**Similar articles:**  (A list of similar articles with authors, journal, year, PMID, and sometimes additional details is present in the original text but omitted here for brevity.  This information can be easily reconstructed by searching for the PMIDs provided).
 
-**Publication Types:** (List omitted for brevity)
+**Publication Types:** (A list of publication types is present but omitted for brevity)
 
-**MeSH Terms:** (List omitted for brevity)
+**MeSH Terms:** (A list of MeSH terms is present but omitted for brevity)
 
-**Substances:** (List omitted for brevity)
-
-----------------------------------------------------------
-Content from [https://pmc.ncbi.nlm.nih.gov/articles/PMC6753944/]: 
-Variability in the Analgesic Response to Ibuprofen Is Associated With Cyclooxygenase Activation in Inflammatory Pain
-
-**Abstract**
-
-The mechanisms underlying interindividual variability in analgesic efficacy of nonsteroidal anti-inflammatory drugs (NSAIDs) are not well understood.  This study performed pain phenotyping, functional neuroimaging, pharmacokinetic/pharmacodynamic assessments, inflammation biomarkers, and gene expression profiling in healthy subjects who underwent surgical extraction of bony impacted third molars and were treated with ibuprofen (400 mg; N=19) or placebo (N=10). Analgesic efficacy was not associated with demographic or clinical characteristics, ibuprofen pharmacokinetics, or the degree of cyclooxygenase inhibition by ibuprofen. Compared with partial responders to ibuprofen (N=9, required rescue medication within the dosing interval), complete responders (N=10, no rescue medication) exhibited greater induction of urinary prostaglandin metabolites and serum tumor necrosis factor-α and interleukin 8. Differentially expressed genes in peripheral blood mononuclear cells were enriched for inflammation-related pathways. These findings suggest that a less pronounced activation of the inflammatory prostanoid system is associated with insufficient pain relief on ibuprofen alone and the need for additional therapeutic intervention.
-
-**Study Highlights:**
-
-* **Current Knowledge:** Substantial interindividual variability exists in NSAID analgesic efficacy, but the underlying mechanisms are poorly understood.
-* **Study Question:** This study aimed to identify factors associated with heterogeneity in ibuprofen analgesic response after third molar extraction.
-* **New Knowledge:**  The study demonstrates substantial interindividual heterogeneity in inflammatory prostanoid system activation in response to surgical trauma. Less pronounced activation is linked to insufficient pain relief with ibuprofen alone.
-* **Clinical Implications:** Understanding the mechanisms underlying variability in analgesic efficacy may lead to biomarkers predictive of ibuprofen and other NSAID responses.
-
-
-**Introduction**
-
-Acute pain, while adaptive, can hinder post-operative healing and mental well-being. Opioid overprescription contributes to the opioid epidemic.  Non-addictive analgesics, like NSAIDs, offer an alternative. NSAIDs inhibit cyclooxygenase (COX) enzymes (COX-1 and COX-2), reducing prostanoid synthesis (PGE2, PGD2, PGF2α, PGI2, and thromboxane A2).  In inflammatory pain, these mediators promote sensitization.  NSAIDs are effective when COX pathway activation is a key mechanism, such as in third molar extraction (≈5 million patients/year in the US). While NSAIDs are generally effective, 20-30% of patients require opioid rescue medication within 6 hours.  Precision medicine approaches could optimize NSAID therapy and reduce opioid prescriptions.  This study used deep phenotyping to characterize factors associated with ibuprofen response variability after third molar extraction.
-
-**Results**
-
-**Study Cohort:** 29 healthy adults (16 men, 13 women; mean age 24.9 ± 3.59 years) participated; 10 received placebo, 19 received ibuprofen.
-
-**Activity of Ibuprofen:** Ibuprofen was significantly more effective than placebo in pain relief.  The onset of pain relief was detectable between 15 and 30 minutes post-administration.  Ibuprofen inhibited COX activity, as shown by *ex vivo* assays and urinary PG metabolite quantification.
-
-**Variability in the Ibuprofen Response:**  All placebo recipients needed opioid rescue medication (median time 53 minutes). Nine ibuprofen recipients (partial responders) also needed rescue medication (median time 105 minutes). Ten ibuprofen recipients (complete responders) did not require additional analgesia within 4 hours. Pain intensity scores differed significantly among the three groups.
-
-**Variability in the Inflammatory Response to Surgery:** No significant differences in demographics or clinical characteristics were found between complete and partial responders.  Ibuprofen plasma concentrations and COX inhibition were similar in both groups.  However, partial responders showed greater suppression of urinary PG metabolites at the first post-surgery time point compared to complete responders. At the second post-surgery time point, complete responders exhibited significantly greater serum TNF-α and IL-8 induction than partial responders.  The placebo group showed the most gene expression changes in PBMCs, followed by partial responders, with complete responders showing the fewest changes.  Pathway analysis revealed inflammation-related pathways enriched in the differentially expressed genes (DEGs), with differences between groups.
-
-**Discussion**
-
-Pain is complex and interindividual variability in analgesic response is well-established.  This study used multiple techniques (behavioral, brain imaging, systemic inflammation markers) to distinguish between partial and complete responders to ibuprofen.  The response could not be predicted by clinical characteristics, pharmacokinetics, or pharmacodynamics.  Complete responders showed higher urinary PG metabolites and greater serum TNF-α and IL-8 induction.  Gene expression analysis showed complete responders had fewer DEGs and lower inflammatory gene expression.  This suggests differences in COX pathway regulation and inflammatory responses contribute to ibuprofen efficacy variability.  Study limitations include sample size and focus on healthy young adults.
-
-**Conclusion**
-
-Marked interindividual variability in ibuprofen's analgesic efficacy after third molar extraction surgery exists, unrelated to clinical characteristics, ibuprofen plasma concentrations, or COX inhibition. Differences in urinary PG metabolites, serum cytokines, and PBMC gene expression suggest that the regulation of the inflammatory response to surgery differs between responders.  Further research could identify predictive biomarkers for NSAID response, potentially reducing unnecessary opioid prescriptions.
-
-**Methods**
-
-(A detailed description of the methods is available in the Supplementary Information.)  The study protocol was approved by the University of Pennsylvania Institutional Review Board.  The study involved collecting baseline samples, performing surgery, administering ibuprofen or placebo, conducting fMRI scans, collecting post-surgery samples, and analyzing data using various methods (COX activity assays, cytokine quantification, gene expression analysis, statistical tests).  Data is accessible through Gene Expression Omnibus Series accession number GSE120596.
-
-**Funding and Conflicts of Interest**
-
-(Funding sources and author disclosures of conflicts of interest are detailed in the original publication.)
-
-----------------------------------------------------------
-Content from [https://pubmed.ncbi.nlm.nih.gov/1634976/]: 
-Effect of ibuprofen on the healing and remodeling of bone and articular cartilage in the rabbit temporomandibular joint
-
-**Authors:** G Obeid, X Zhang, X Wang
-
-**Affiliation:** Department of Oral and Maxillofacial Surgery, Washington Hospital Center, Washington, DC 20010.
-
-**Publication:** J Oral Maxillofac Surg. 1992 Aug;50(8):843-9; discussion 849-50. doi: 10.1016/0278-2391(92)90276-6. PMID: 1634976
-
-**Abstract:**
-
-The purpose of this study was to determine the effect of ibuprofen on the healing and remodeling of bone and cartilage in the temporomandibular joint of the rabbit. Forty-two rabbits underwent surgery to create a groove and a hole in the articular surface of both the right and left mandibular condyles.  Following surgery, the animals were divided into three groups: Group A (control, no medication), Group B (17 mg/kg ibuprofen daily), and Group C (34 mg/kg ibuprofen daily).  All animals were euthanized after 4 weeks. The 84 condyles were examined clinically and histologically. Statistical analysis showed a highly significant difference in the healing of bone and cartilage between groups A and C (P < .01) and a significant difference between groups A and B (P < .05). The results indicate that ibuprofen has an adverse effect on the healing of bone and cartilage in the rabbit temporomandibular joint.
-
-
-**Similar Articles (Partial List):**
-
-* Regeneration of articular cartilage defects in the temporomandibular joint of rabbits by fibroblast growth factor-2: a pilot study.  Takafuji H, et al. Int J Oral Maxillofac Surg. 2007. PMID: 17826961
-* Regeneration of defects in the articular cartilage in rabbit temporomandibular joints by bone morphogenetic protein-2. Suzuki T, et al. Br J Oral Maxillofac Surg. 2002. PMID: 12054709
-* Effect of methylprednisolone, hyaluronic acid and pioglitazone on histological remodeling of temporomandibular joint cartilage in rabbits affected by drug-induced osteoarthritis. Kałużyński K, et al. Postepy Hig Med Dosw (Online). 2016. PMID: 26864066
-* Temporomandibular joint: surgically created disk displacement causes arthrosis in the rabbit. Macher DJ, et al. Oral Surg Oral Med Oral Pathol. 1992. PMID: 1437028
-* Effect of platelet-rich plasma on temporomandibular joint cartilage wound healing: Experimental study in rabbits. Coskun U, et al. J Craniomaxillofac Surg. 2019. PMID: 30606638
-
-
-**Cited By (Partial List):**
-
-* The effect of NSAIDs on postfracture bone healing: a meta-analysis of randomized controlled trials. Al Farii H, et al. OTA Int. 2021. PMID: 34746650
-* Antioxidant and anti-inflammatory agents mitigate pathology in a mouse model of pseudoachondroplasia. Posey KL, et al. Hum Mol Genet. 2015. PMID: 25859006
-* Do nonsteroidal anti-inflammatory drugs affect bone healing? A critical analysis. Pountos I, et al. ScientificWorldJournal. 2012. PMID: 22272177
-* Infection, inflammation, and bone regeneration: a paradoxical relationship. Thomas MV, et al. J Dent Res. 2011. PMID: 21248364
-* Ketorolac for postoperative pain management in children. Forrest JB, et al. Drug Saf. 1997. PMID: 9187531
-
-
-**MeSH Terms:** Animals, Bone Remodeling/drug effects, Cartilage, Articular/drug effects, Chi-Square Distribution, Female, Ibuprofen/adverse effects, Rabbits, Temporomandibular Joint/drug effects, Temporomandibular Joint Disorders/drug therapy, Wound Healing/drug effects
-
-**Substances:** Ibuprofen
-
-----------------------------------------------------------
-Content from [https://academic.oup.com/chemse/article/26/1/55/465392]: 
-The provided text indicates repeated issues accessing academic.oup.com.  The core problem is slow response times and the requirement to enable JavaScript and cookies.  The site also employs CAPTCHAs for security verification.  The repeated "Verifying you are human" messages and "Waiting for academic.oup.com to respond..." indicate network latency or server-side issues.  The Cloudflare Ray IDs suggest the site uses Cloudflare's CDN for performance and security.
-
-----------------------------------------------------------
-Content from [https://www.nejm.org/doi/full/10.1056/NEJMoa1611593]: 
-The only useful information is `www.nejm.org`.  The rest is extraneous website access and security verification information.
+**Substances:** (A list of substances is present but omitted for brevity)
 
 ----------------------------------------------------------

@@ -18,16 +18,16 @@ def controller(question, search_engine, num_results, file_content):
     match search_engine:
         case "1":
             links = internet_search.search_google(question, num_results)
-            all_text, articles = internet_search.links_parsing(links, question)
+            all_text, articles, links = internet_search.links_parsing(links, question)
         case "2":
             links = internet_search.search_duckduckgo(question, num_results)
-            all_text, articles = internet_search.links_parsing(links, question)
+            all_text, articles, links = internet_search.links_parsing(links, question)
         case "3":
             links = internet_search.search_bing(question, num_results)
-            all_text, articles = internet_search.links_parsing(links, question)
+            all_text, articles, links = internet_search.links_parsing(links, question)
         case "4":
             links = internet_search.search_brave(question, num_results)
-            all_text, articles = internet_search.links_parsing(links, question)
+            all_text, articles, links = internet_search.links_parsing(links, question)
         case "5":
             articles, links, all_text = internet_search.search_scholar_links(question, num_results)
             links = internet_search.parsing_doc_db(articles)
@@ -41,17 +41,19 @@ def controller(question, search_engine, num_results, file_content):
             logger.error("Not available search engine")
 
     logger.info("Create context")
-    if file_content != "":
-        file = (f"Content from [My file]: \n{file_content}\n"
-                f"----------------------------------------------------------\n")
-        articles.append({
-            "title": "My file",
-            "link": '',
-            "abstract": file,
-            "year": '',
-            "author": ''
-        })
-        all_text += file
+    if file_content:
+        if len(file_content[0]) > 10:
+            logger.info("Add file content")
+            file = (f"Content from uploaded file: \n{file_content[0]}\n"
+                    f"----------------------------------------------------------\n")
+            articles.append({
+                "title": "Uploaded content",
+                "link": '',
+                "abstract": file,
+                "year": '',
+                "author": ''
+            })
+            all_text += file
     context = all_text
     # context = preprocess_text.clean_text(all_text)
     with open("context.txt", "w") as file:
