@@ -1,52 +1,48 @@
-<template>
-    <button class="send-button" @click="selectAndUploadFiles">
-       <img
-           src="../../public/upload-sign-svgrepo-com.png"
-           alt="Upload_icon"
-           width="18px"
-           height="18px"
-    ></button>
 
-    <input
-      type="file"
-      ref="fileInput"
-      @change="uploadFiles"
-      style="display: none;"
-    />
-    <div v-if="uploading">Uploading...</div>
-    <div v-if="uploadError" class="popup-overlay">
-        <div class="popup-content">
-          <p>An error occurred during upload!</p>
-          <button @click="uploadError = false">Close</button>
+<template>
+  <div class="tooltip" data-tooltip="Upload files for adding to context">
+      <button class="send-button" @click="selectAndUploadFiles">
+      <img
+         src="../../public/upload-sign-svgrepo-com.png"
+         alt="Upload_icon"
+         width="18px"
+         height="18px"
+      ></button>
+    </div>
+  <input
+    type="file"
+    ref="fileInput"
+    @change="uploadFiles"
+    style="display: none;"
+  />
+  <div v-if="uploading">
+          <div v-if="loading" class="loader"></div>
         </div>
-    </div>
-    <div v-if="files_content">
-      <div v-for="(content, index) in files_content" :key="index" >
-        <p>
-          <strong>File Name:</strong> {{ files_name[index] }}
-          <button @click="removeFile(index)" class="remove-button">✖</button>
-        </p>
-        <div v-html="content" class="fileContent"></div>
+  <div v-if="uploadError" class="popup-overlay">
+      <div class="popup-content">
+        <p>An error occurred during upload!</p>
+        <button @click="uploadError = false">Close</button>
       </div>
-    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 export default {
   data() {
-    return {
+    return{
+      fileContent: '',  // To store the file content temporarily
+      fileName: 'example.txt',  // File name for the download
       selectedFiles: [],
       uploading: false,
       uploadError: false,
       uploadSuccess: false,
       files_content: [],
       files_name: [],
-    };
+    }
   },
   methods: {
-     selectAndUploadFiles() {
+    selectAndUploadFiles() {
       // Programmatically trigger file input click
       this.$refs.fileInput.click();
     },
@@ -81,6 +77,11 @@ export default {
           console.log('Response from server:', response.data);
           this.files_content = [...this.files_content, ...response.data.files_content];
           this.files_name = [...this.files_name, ...response.data.files_name];
+
+          this.$emit('files-uploaded', {
+          files_content: this.files_content,
+          files_name: this.files_name,
+        });
         }
       } catch (error) {
         this.uploadError = true;
@@ -88,19 +89,11 @@ export default {
         this.uploading = false;
       }
     },
-    removeFile(index) {
-    this.files_content.splice(index, 1); // Удаляем содержимое файла
-    this.files_name.splice(index, 1);   // Удаляем имя файла
-  },
-  },
-};
+  }
+}
 </script>
 
-<style scoped>
-.fileContent{
-  display: none;
-}
-
+<style>
 .send-button {
   background-color: #000000;
   border: none;
@@ -115,11 +108,18 @@ export default {
   justify-content: center;
     opacity: 0.7;
   transition: opacity .2s;
+  height: 100%;
 }
 
 .send-button:hover {
   opacity: 1;
 }
+
+.send-button svg {
+  width: 18px;
+  height: 18px;
+}
+
 
 .popup-overlay {
   position: fixed;
@@ -140,5 +140,71 @@ export default {
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content button{
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.popup-content button:hover {
+  opacity: 1;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  visibility: hidden;
+  opacity: 0;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tooltip:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .send-button{
+    padding: 6px 8px;
+  }
+
+  .send-button svg{
+    width: 9px;
+    height: 9px;
+  }
+  .source_container th:first-child, td:first-child {
+    width: 50%;
+  }
+
+  footer{
+    display: none;
+  }
 }
 </style>

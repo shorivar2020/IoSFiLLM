@@ -1,6 +1,7 @@
 import google.generativeai as genai
 import os
 from loguru import logger
+from google.api_core.exceptions import ResourceExhausted
 
 
 def gemini(question, context):
@@ -9,12 +10,20 @@ def gemini(question, context):
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
         responses = model.generate_content("Answer this question: " + question + " Use only this information: " +
                                            context +
-                                           "when you use information create cite where you take it  AND WRITE TAKEN URL IN THIS FORMAT: "
-                                           "text_from_source  <a href='url_from_source'>1</a>"
-                                           "text_from_source_second <a href='url_from_second_source'>2</a> ")
+                                           "when you use information create cite where you take it "
+                                           " AND WRITE TAKEN URL IN THIS FORMAT: "
+                                           "text_from_source  [ <a href='url_from_source' target='_blank'>1</a> ]."
+                                           "text_from_source_second "
+                                           "[ <a href='url_from_second_source' target='_blank'>2</a> ]."
+                                           "text_from_second_and_one_source "
+                                           "[ <a href='url_from_source' target='_blank'>1</a> ], "
+                                           "[ <a href='url_from_second_source' target='_blank'>2</a> ].")
+    except ResourceExhausted as e:
+        print(f"Encountered ResourceExhausted: {e}")
+        return "ResourceExhausted " + context
     except Exception as e:
         logger.info(f"Error size context ai:  {len(context)}")
-        responses = ''
+        return ''
     return responses.text
 
 
@@ -25,24 +34,54 @@ def gemini_config():
 
 
 def gemini_clean(model, context):
-    response = model.generate_content("Clean text from access information, CAPTCHAs, JavaScript and cookie requirements, slow response times and another not useful information" + context)
-    return response.text
+    try:
+        response = model.generate_content("Clean text from access information, CAPTCHAs,"
+                                          " JavaScript and cookie requirements, slow response times and "
+                                          "another not useful information" + context)
+        return response.text
+    except ResourceExhausted as e:
+        print(f"Encountered ResourceExhausted: {e}")
+        return "ResourceExhausted " + context
 
 
 def gemini_summ(model, context):
-    response = model.generate_content("Summorize this text " + context)
-    return response.text
+    try:
+        response = model.generate_content("Summorize this text " + context)
+        return response.text
+    except ResourceExhausted as e:
+        print(f"Encountered ResourceExhausted: {e}")
+        return "ResourceExhausted " + context
 
 
 def gemini_relative(model, context, question):
-    response = model.generate_content("Check if this text " + context + " is relative to this question " + question +
-                                      "RETURN ONLY NO or YES")
-    logger.warning("RELATIVITY " + response.text)
-    return response.text
+    try:
+        response = model.generate_content("Check if this text " + context + " is relative to this question " + question +
+                                          "RETURN ONLY NO or YES")
+        logger.warning("RELATIVITY " + response.text)
+        return response.text
+    except ResourceExhausted as e:
+        print(f"Encountered ResourceExhausted: {e}")
+        return "ResourceExhausted " + question
+
+
+def gemini_find_keywords(model, keywords, question):
+    try:
+        response = model.generate_content("delete not target keywords from this list  " + keywords +
+                                          " of this query " + question +
+                                          "RETURN ONLY KEYWORDS")
+        logger.warning("KEYWORDS " + response.text)
+        return response.text
+    except ResourceExhausted as e:
+        print(f"Encountered ResourceExhausted: {e}")
+        return "ResourceExhausted " + keywords
 
 
 def gemini_answer(question):
-    genai.configure(api_key=os.environ["API_KEY"])
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-    response = model.generate_content(question)
-    return response.text
+    try:
+        genai.configure(api_key=os.environ["API_KEY"])
+        model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+        response = model.generate_content(question)
+        return response.text
+    except ResourceExhausted as e:
+        print(f"Encountered ResourceExhausted: {e}")
+        return "ResourceExhausted " + question

@@ -10,9 +10,10 @@ def process_download_document(document):
 
 
 def controller(question, search_engine, num_results, file_content):
+    question_keywords = question
     if len(question.split()) > 5:
         logger.info("Question too long, start preprocessing")
-        question = preprocess_text.prepare_query(question)
+        question, question_keywords = preprocess_text.prepare_query(question)
 
     logger.info("Start searching " + question)
     match search_engine:
@@ -29,10 +30,10 @@ def controller(question, search_engine, num_results, file_content):
             links = internet_search.search_brave(question, num_results)
             all_text, articles, links = internet_search.links_parsing(links, question)
         case "5":
-            articles, links, all_text = internet_search.search_scholar_links(question, num_results)
+            articles, links, all_text = internet_search.search_scholar_links(question_keywords, num_results)
             links = internet_search.parsing_doc_db(articles)
         case "6":
-            articles, links, all_text = internet_search.search_pub_med(question, num_results)
+            articles, links, all_text = internet_search.search_pub_med(question_keywords, num_results)
             links = internet_search.parsing_doc_db(articles)
         case _:
             links = []
@@ -68,9 +69,10 @@ def controller(question, search_engine, num_results, file_content):
 
 
 if __name__ == "__main__":
-    r, urls, a, ai = controller('Indicate ibuprofen', "1", 10, "")
+    r, urls, a, ai = controller('Can you find similar articles to Happy ending programme?',
+                                "2", 10, "")
     for i in range(len(urls)):
         logger.info("Link " + urls[i])
         logger.info("Article " + str(a[i]))
     logger.info("Response " + r)
-    logger.info("AI Answer " + ai)
+    # logger.info("AI Answer " + ai)

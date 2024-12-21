@@ -50,8 +50,8 @@ def search_google(query, num_results):
     return links
 
 
-def search_duckduckgo(question, num_results):
-    results = DDGS().text(question, max_results=num_results)
+def search_duckduckgo(question, num):
+    results = DDGS().text(question, max_results=int(num))
     links = [result['href'] for result in results]
     return links
 
@@ -106,6 +106,10 @@ def search_scholar_links(question, num_results):
     count = 0
     all_text = ""
     for result in search_query:
+        logger.info("Scholar article № " + str(count))
+        count += 1
+        if count > num_results:
+            break
         # Extract details from the result
         title = result['bib'].get('title', 'No title available')
         abstract = result['bib'].get('abstract', 'No abstract available')
@@ -120,8 +124,8 @@ def search_scholar_links(question, num_results):
         author = result['bib'].get('author', '')
         pub_url = result.get('pub_url', None)
         model = llm.gemini_config()
-        llm.gemini_relative(model, abstract, question)
-        if "YES" in llm.gemini_relative(model, abstract, question):
+        relativity = llm.gemini_relative(model, abstract, question)
+        if "YES" in relativity:
             links.append(pub_url)
             # Prepare the data to append
             article = {
@@ -138,10 +142,6 @@ def search_scholar_links(question, num_results):
 
             all_text += accumulated_text
             # Stop after the desired number of results
-            count += 1
-            if count >= num_results:
-                break
-
     return articles, links, all_text
 
 
