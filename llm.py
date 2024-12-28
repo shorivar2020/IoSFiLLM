@@ -65,7 +65,7 @@ def gemini_relative(model, context, question):
     try:
         response = model.generate_content("Check if this text " + context + " is relative to this question " + question +
                                           "RETURN ONLY NO or YES")
-        logger.warning("RELATIVITY " + response.text)
+        logger.info("RELATIVITY " + response.text)
         return response.text
     except ResourceExhausted as e:
         print(f"Encountered ResourceExhausted: {e}")

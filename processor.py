@@ -65,7 +65,7 @@ def process_query(query, search_engine, num_results, file_content):
         logger.info("Question too long, start preprocessing query")
         question, question_keywords = preprocess_text.prepare_query(query)
     logger.info("Start searching " + query)
-    context, articles, links = internet_search.search_information(search_engine, query, question_keywords, num_results)
+    context, articles, links = internet_search.search_information(search_engine, query, question_keywords, int(num_results))
     logger.info("Create context")
     if file_content:
         articles, context = file_content_process(file_content[0], articles, context)

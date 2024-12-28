@@ -1,63 +1,18 @@
-Content from [https://en.wikipedia.org/wiki/Blood%E2%80%93brain_barrier]: 
-The blood–brain barrier (BBB) is a highly selective semipermeable border of endothelial cells that regulates the transfer of solutes and chemicals between the circulatory system and the central nervous system.  It protects the brain from harmful substances in the blood.  The BBB is formed by endothelial cells, astrocyte end-feet, and pericytes.  It allows passage of small molecules by passive diffusion and actively transports nutrients like glucose and amino acids.  The BBB restricts pathogens, large or hydrophilic molecules, and peripheral immune factors.  However, circumventricular organs and the choroid plexus have highly permeable capillaries.  The BBB's tight junctions, composed of occludin, claudins (like Claudin-5), and junctional adhesion molecules, contribute to its selectivity.  A functional BBB is present at birth.  BBB dysfunction is implicated in various neurological and systemic diseases, hindering drug delivery.  Therapeutic research focuses on methods to cross the BBB, including intranasal administration and nanoparticles.  The concept of a blood-brain barrier was first hypothesized in the late 19th and early 20th centuries.
-
+Content from [https://pubmed.ncbi.nlm.nih.gov/39729630/]: 
+OBJECTIVE: The short-term efficacy of red blood cell (RBC) transfusion among general traumatic brain injury (TBI) patients is unclear.
+METHODS: We used the MIMIC database to compare the efficacy of liberal (10 g/dL) versus conservative (7 g/dL) transfusion strategy in TBI patients. The outcomes were neurological progression (decrease of Glasgow coma scale (GCS) of at least 2 points) and death within 28 days of ICU admission. Each eligible individual was cloned and assigned each of the replicates to one of the treatment arm. The imbalance induced by informative censoring was adjusted by inverse probability weighting. The standardized, weighted pooled logistic regression with 500 bootstrap resampling was used to estimate the cumulative risk difference and 95% confidence interval (CI).
+RESULTS: Of the 1141 eligible individuals, 29.0% received RBC transfusion. Compared with the restrictive group, the liberal strategy reduced early death (3 days: 5%, 95% CI: 2%-7%; 7 days: 6%, 95% CI: 3%-11%); however, no significant difference of mortality risk at 28-day or neurological progression risk at any time points was observed. The risk of coagulopathy at 3 days was increased by 7% (95% CI: 1%-19%) in the liberal group. The subgroup analysis indicated a beneficial effect of liberal transfusion on mortality in hemodynamically unstable patients.
+INTERPRETATION: Compared with the restrictive strategy, the liberal strategy does not improve the short-term neurological prognosis and death among patients with TBI in a real-world situation. The liberal strategy may be beneficial to survival at very early stage or in hemodynamically unstable subgroup.
 ----------------------------------------------------------
-Content from [https://pmc.ncbi.nlm.nih.gov/articles/PMC4292164/]: 
-The blood-brain barrier (BBB) tightly regulates the movement of ions, molecules, and cells between the blood and the brain, maintaining CNS homeostasis and protecting neural tissue.  This review discusses the cells of the BBB (endothelial cells, pericytes, astrocytes, immune cells), the molecules involved (tight junctions, transporters, transcytosis factors, leukocyte adhesion molecules), and the signaling pathways regulating BBB formation and homeostasis (Wnt/β-catenin, Hedgehog).  BBB dysfunction is a key feature of many neurological disorders, including multiple sclerosis, stroke, and Alzheimer's disease, often involving alterations in tight junctions, transporters, and transcytosis.  Further research is needed to fully understand the complexities of BBB regulation and dysfunction in disease.
-
+Content from [https://pubmed.ncbi.nlm.nih.gov/39729618/]: 
+OBJECTIVE: While the relationship between smoking and subarachnoid hemorrhage is well established, data regarding the probability of detecting unruptured intracranial aneurysms (UIAs) in smokers remain sparse. The aim of this systematic review and meta-analysis is to provide a comprehensive understanding of the relationship between smoking and the likelihood of identifying UIAs in healthy asymptomatic patients who underwent brain imaging for indications unrelated to UIAs.
+METHODS: A systematic review was conducted following the PRISMA guidelines. The PubMed and Scopus databases were searched for studies published before March 2024 that reported on the presence of UIAs in healthy asymptomatic patients who had undergone brain imaging for indications unrelated to UIAs. Three independent reviewers assessed the eligibility of all retrieved studies. Risk of bias for the included observational studies was assessed using the methodological index for non-randomized studies. Data on UIA prevalence, smoking status, and patient and aneurysm characteristics were extracted. The association between smoking and the presence of UIA was studied. A prevalence proportional meta-analysis was conducted across the included studies. A meta-analysis was performed with a random-effects model by using summary statistics from the included studies.
+RESULTS: Six studies involving 47,788 patients who had undergone brain imaging were identified for quantitative analysis. The pooled UIA prevalence in the sample was 3.07% (95% CI 2.27%-4.16%). Patients who smoked had higher rates of aneurysm detection than the patients who did not smoke (pooled prevalence of 2.96%, 95% CI 2.68%-3.27% vs 2.23%, 95% CI 2.08%-2.39%). Although the relation between the two was not statistically significant (p = 0.06), smoking was associated with higher odds for UIA detection, yielding an OR of 1.34 (95% CI 1.07-1.67) with an I2 value of 53%.
+CONCLUSIONS: This study suggests a potentially higher risk of UIAs in patients who smoked than in those who never smoked. However, the results of this meta-analysis revealed that smoking was not statistically associated with higher UIA detection. This result could be explained by the limited number of studies published on this topic. If these findings reach statistical significance in future larger studies, it could justify revising guidelines to include cigarette smokers in intracranial aneurysm screening.
 ----------------------------------------------------------
-Content from [https://my.clevelandclinic.org/health/body/24931-blood-brain-barrier-bbb]: 
-The blood-brain barrier (BBB) is a protective layer lining blood vessels in the brain.  It acts as a filter, keeping harmful substances out and beneficial substances in, controlling the movement of molecules into and out of the brain.
-
-**Function:**  The BBB's endothelial cells are tightly packed, preventing most things from passing through without assistance.  Lipid-soluble substances can pass easily, while larger or water-soluble molecules require transport mechanisms.  Substances that can pass include alcohol, anesthetics, many medications, and caffeine.  Pathogens and toxins generally cannot.
-
-**Conditions and Disorders:**  Inflammation or other conditions can weaken the BBB, allowing harmful substances to enter the brain.  Acute conditions affecting the BBB include brain cancers, infections (encephalitis and meningitis), concussion/TBI, hypercapnia, hypoxia, stroke, and seizures. Chronic conditions include Alzheimer's disease, ALS, chronic obstructive pulmonary disease (COPD), epilepsy, frontotemporal dementia, hypertension, hyperglycemia/Type 2 diabetes, hyperlipidemia, multiple sclerosis, neuromyelitis optica (NMO), and Parkinson's disease.  There's currently no clear way to directly identify BBB problems, though research is ongoing.
-
-**Treatments:**  There are no treatments that directly target the BBB. Instead, treatments focus on managing conditions that weaken it.  These include medications for high blood pressure, high cholesterol, or high blood sugar; treatments to restore blood circulation after stroke; anti-seizure medications; and cancer treatments.
-
-**Care:** To maintain BBB health, focus on maintaining a healthy weight and balanced diet, promptly treating infections, wearing safety equipment to prevent head injuries, and managing chronic health conditions.
-
-**Healthcare Provider Considerations:** The BBB is a key factor in treating brain and body conditions.  Some medications cannot pass through, requiring alternative approaches like using "Trojan horse" methods or leveraging the body's natural chemistry.
-
-**Discovery and Detection:**  While others contributed to early understanding, Lina Shtern and Raymond Gautier first used the term "blood-brain barrier" in 1921.  Electron microscopy in the 1960s and 70s confirmed its structure.
-
-**Note:** The BBB is a vital defense mechanism, but its imperfections highlight the need for continued research to improve treatments for brain-related conditions.
-
-----------------------------------------------------------
-Content from [https://qbi.uq.edu.au/brain/brain-anatomy/what-blood-brain-barrier]: 
-The brain is precious, and evolution has gone to great lengths to protect it from damage.  Our 7mm thick skull is the most obvious defense, but the brain is also surrounded by protective cerebrospinal fluid and the meninges.  The blood–brain barrier provides further defense against disease-causing pathogens and toxins in the blood.
-
-The blood–brain barrier was discovered in the late 19th century.  Its key structure is the endothelial tight junction, where endothelial cells form tight gaps, allowing only small, fat-soluble molecules, and some gases to pass into brain tissue. Larger molecules, like glucose, use transporter proteins.  Other components surrounding the endothelial cells also influence the barrier's selectivity.
-
-The blood–brain barrier protects against toxins and pathogens while allowing nutrients to reach the brain. It also maintains constant levels of hormones, nutrients, and water.  Damage, such as from bacterial infection (e.g., meningococcal disease) or multiple sclerosis, compromises its function, leading to inflammation or neuronal signaling problems.
-
-The blood–brain barrier impedes drug delivery for mental and neurological disorders.  Approaches to overcome this include the "Trojan horse" method (fusing drugs to molecules that can cross the barrier) and temporarily opening the barrier using ultrasound.  Ultrasound, combined with gas microbubbles, shows promise in improving drug delivery to the brain and treating Alzheimer's disease, without causing brain damage.
-
-----------------------------------------------------------
-Content from [https://pubmed.ncbi.nlm.nih.gov/19664713/]: 
-Structure and function of the blood-brain barrier are summarized.  The physical barrier formed by endothelial tight junctions and the transport barrier from membrane transporters and vesicular mechanisms are described.  The roles of astrocytic glial cells, pericytes, and microglia are outlined.  Embryonic development and changes in pathology are discussed.  The BBB's short and long-term regulation, which may be disturbed in pathology, is noted.  Drug discovery and delivery programs targeting or avoiding the CNS need to consider the BBB's special features.
-
-**Authors:** N Joan Abbott et al.
-
-**Publication:** *Neurobiol Dis*. 2010 Jan;37(1):13-25. doi: 10.1016/j.nbd.2009.07.030. Epub 2009 Aug 5. PMID: 19664713
-
-
-**Similar Articles (Titles only):**
-
-* Role of drug efflux transporters in the brain for drug disposition and treatment of brain diseases.
-* The critical component to establish in vitro BBB model: Pericyte.
-* The blood-brain-barrier in multiple sclerosis: functional roles and therapeutic targeting.
-* The blood-brain barrier: an overview: structure, regulation, and clinical implications.
-* Blood brain barrier and infection.
-
-**Cited By Articles (Titles only):**
-
-* Role of the transcription factor NRF2 in maintaining the integrity of the Blood-Brain Barrier.
-* IP-10 acts early in CV-A16 infection to induce BBB destruction and promote virus entry into the CNS by increasing TNF-α expression.
-* Generation and banking of patient-derived glioblastoma organoid and its application in cancer neuroscience.
-* Exploring dysfunctional barrier phenotypes associated with glaucoma using a human pluripotent stem cell-based model of the neurovascular unit.
-* Glioblastoma cells alter brain endothelial cell homeostasis and tight junction protein expression in vitro.
-
-**MeSH Terms:** Blood-Brain Barrier, Brain, Capillary Permeability, Humans, Models, Neurological, Tight Junctions.
-
+Content from [https://pubmed.ncbi.nlm.nih.gov/39729585/]: 
+OBJECTIVE: Periventricular anastomosis (PA), a recently recognized cause of hemorrhage in moyamoya disease, is reducible after bypass surgery. The timing of the reduction, however, remains poorly understood. The objectives of the present study were to demonstrate radiological reduction of PA occurring within 48 hours after surgery and to identify factors associated with reduction.
+METHODS: This retrospective cohort study included patients aged 16 years or older who were diagnosed with moyamoya disease and underwent direct bypass surgery. PAs were assessed using sliding thin-slab maximum intensity projection MR angiography images acquired before surgery and on postoperative day 1. The signal ratio of PA, the ratio of the signal value of the medullary artery to that of the brain parenchyma, was measured at the same point on automatically aligned baseline and postoperative images. The location of bypass was defined as either targeted or nontargeted to the PA.
+RESULTS: A total of 68 PAs were analyzed. The signal ratio of PA significantly decreased (mean change [95% CI] -0.16 [-0.21 to -0.11]), while that of cerebellar arteries increased (mean change [95% CI] 0.20 [0.09-0.31]). The interrater reliability measurement of the signal ratio change was excellent (intraclass correlation coefficient 0.94). Multivariate linear regression analysis revealed that targeted bypass (regression coefficient [95% CI] -0.1063 [-0.1558 to -0.0569]) and cross-sectional area of the donor artery (regression coefficient [95% CI] -0.1317 [-0.2101 to -0.0534]) were significant factors contributing to signal reduction of the PA. Analysis of the receiver operating characteristic curve revealed that early signal reduction well predicted late-phase reduction (area under the curve 0.78).
+CONCLUSIONS: PA could be reduced within 48 hours after direct bypass surgery, suggesting an early preventive effect against hemorrhage. Early reduction, a potential predictor for late-phase reduction, might be promoted by targeted bypass surgery.
 ----------------------------------------------------------
