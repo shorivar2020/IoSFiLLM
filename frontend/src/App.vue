@@ -50,7 +50,7 @@ export default {
       source: '',
       ai_answer: '',
       articles: '',
-      selected: "1",    // Value of the first search engine slider
+      selected: "1",
       loading: false,
       content_exist: false,
       fileContent: '',  // To store the file content temporarily
@@ -67,7 +67,7 @@ export default {
       this.loading = true;
       const contentElements = this.$el.querySelectorAll('.fileContent'); // Fetch all elements
       const content = Array.from(contentElements).map(element => element.innerHTML); // Collect all innerHTMLs
-      axios.post('http://127.0.0.1:8080/api/check', {
+      axios.post('http://127.0.0.1:8081/api/check', {
         question: this.question,
         searchEngine: this.selected,
         fileContent: content,

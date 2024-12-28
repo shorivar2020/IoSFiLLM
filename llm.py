@@ -1,7 +1,10 @@
+import time
+
 import google.generativeai as genai
 import os
 from loguru import logger
 from google.api_core.exceptions import ResourceExhausted
+import time
 
 
 def gemini(question, context):
@@ -20,7 +23,8 @@ def gemini(question, context):
                                            "[ <a href='url_from_second_source' target='_blank'>2</a> ].")
     except ResourceExhausted as e:
         print(f"Encountered ResourceExhausted: {e}")
-        return "ResourceExhausted " + context
+        time.sleep(60)
+        return gemini(question, context)
     except Exception as e:
         logger.info(f"Error size context ai:  {len(context)}")
         return ''
@@ -35,13 +39,17 @@ def gemini_config():
 
 def gemini_clean(model, context):
     try:
-        response = model.generate_content("Clean text from access information, CAPTCHAs,"
-                                          " JavaScript and cookie requirements, slow response times and "
-                                          "another not useful information" + context)
+        logger.info("GEMINI CLEAN")
+        response = model.generate_content("Clean the text and remove any irrelevant or distracting information." + context)
+
+        logger.info("GEMINI CLEAN STOP")
         return response.text
     except ResourceExhausted as e:
         print(f"Encountered ResourceExhausted: {e}")
         return "ResourceExhausted " + context
+    except Exception as e:
+        logger.error(f"ERROR Gemini clean {e}")
+        return ""
 
 
 def gemini_summ(model, context):
@@ -84,4 +92,5 @@ def gemini_answer(question):
         return response.text
     except ResourceExhausted as e:
         print(f"Encountered ResourceExhausted: {e}")
-        return "ResourceExhausted " + question
+        time.sleep(60)
+        return gemini_answer(question)

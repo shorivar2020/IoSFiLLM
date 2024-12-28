@@ -1,6 +1,7 @@
 myenv/
+venv/
 .venv/
 .idea
+.env
 __pycache__
-access_data
-not_available
+old_llm.py

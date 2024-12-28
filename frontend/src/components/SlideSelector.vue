@@ -14,19 +14,20 @@
 
 <script>
 export default {
-  data() {
-    return{
-      sel: "1",
+
+  props: {
+    modelValue: {
+      type: String,
+      required: true
     }
   },
-
   computed: {
     selected: {
       get() {
-        return this.sel;
+        return this.modelValue; // Получение значения из родителя
       },
-      set(val) {
-        this.$emit('input', val);
+      set(value) {
+        this.$emit('update:modelValue', value); // Отправка обновления в родительский компонент
       }
     }
   }

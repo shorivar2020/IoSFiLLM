@@ -1,0 +1,27 @@
+# Configuration file for the Flask application
+
+flask:
+  host: "0.0.0.0"  # Host to run the Flask app
+  port: 8081        # Port to run the Flask app
+  debug: false      # Debug mode (true/false)
+
+cors:
+  origins: "*"      # Origins allowed for CORS
+
+logger:
+  log_level: "INFO" # Log level for the application
+
+http_status_codes:
+  success_request_ok: 200
+  bad_request: 400
+  unauthorized: 401
+  internal_server_error: 500
+
+files_information:
+  name: "context.txt"
+  min_length: 10
+
+query_information:
+  max_length: 5
+
+timeout_time: 60
